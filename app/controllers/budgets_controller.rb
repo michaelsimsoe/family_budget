@@ -12,7 +12,7 @@ class BudgetsController < ApplicationController
 		@budget = Budget.new(budget_params)
 
 		if @budget.save
-			redirect_to @post
+			redirect_to @budget
 		else
 			render 'new'
 		end
@@ -45,7 +45,7 @@ class BudgetsController < ApplicationController
 
 	private
 
-	def post_params
+	def budget_params
 		params.require(:budget).permit(:name, :description)
 	end
 
