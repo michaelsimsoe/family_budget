@@ -1,15 +1,24 @@
 <div class="box">
   <article class="media">
     <div class="media-content">
-      <div class="content">
-        <p>
-          <strong><%= expense.title %>:</strong>
-          <%= expense.description %>
-          <%= expense.amount %>
-        </p>
-      </div>
+      <table class="table ">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Amount</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+            <th><%= expense.title %></th>
+            <th><%= expense.description %></th>
+            <th><%= expense.amount %></th>
+            <th><%= link_to 'Delete', [expense.budget, expense],
+                  method: :delete, class: "button is-danger", data: { confirm: 'Are you sure?' } %> 
+            </th>
+        </tbody>
+      </table>
     </div>
-     <%= link_to 'Delete', [expense.budget, expense],
-                  method: :delete, class: "button is-danger", data: { confirm: 'Are you sure?' } %>
   </article>
 </div>

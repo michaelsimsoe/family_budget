@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>DemoBlog</title>
+    <title>Family Budget</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -24,7 +24,14 @@
             </div>
             <div id="navbarMenuHeroA" class="navbar-menu">
               <div class="navbar-end">
+                <% if current_user %>
                 <%= link_to "Create New Budget", new_budget_path, class:"navbar-item" %>
+                  <%= link_to "Log out", logout_path, method: "delete", class:"navbar-item" %>
+                  <%= current_user.email %>
+                  <% else %>
+                  <%= link_to "Login", 'login', class:"navbar-item" %>
+                  <%= link_to "Signup", 'signup', class:"navbar-item" %>
+                <% end %>
               </div>
             </div>
           </div>

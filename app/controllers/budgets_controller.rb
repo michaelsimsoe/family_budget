@@ -1,4 +1,5 @@
 class BudgetsController < ApplicationController
+	before_action :require_user, only: [:index, :new, :show]
 
 	def index
 		@budgets = Budget.all.order("created_at DESC")
@@ -28,7 +29,7 @@ class BudgetsController < ApplicationController
 		if @budget.update(budget_params)
 			redirect_to @budget
 		else
-			redner 'edit'
+			render 'edit'
 		end
 	end
 
