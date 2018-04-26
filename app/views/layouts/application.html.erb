@@ -16,6 +16,9 @@
           <div class="container">
             <div class="navbar-brand">
               <%= link_to 'Budgets', root_path, class: "navbar-item" %>
+              <% if current_user %>
+                <div class="navbar-item"><%= current_user.email %></div>
+              <% end %>
               <span class="navbar-burger burger" data-target="navbarMenuHeroA">
                 <span></span>
                 <span></span>
@@ -27,7 +30,6 @@
                 <% if current_user %>
                 <%= link_to "Create New Budget", new_budget_path, class:"navbar-item" %>
                   <%= link_to "Log out", logout_path, method: "delete", class:"navbar-item" %>
-                  <%= current_user.email %>
                   <% else %>
                   <%= link_to "Login", 'login', class:"navbar-item" %>
                   <%= link_to "Signup", 'signup', class:"navbar-item" %>

@@ -24,6 +24,13 @@
         <div class="content">
             <%= @budget.description %>
         </div>
+        <div class="content">
+            <%= current_user %>
+            <hr>
+            <%= current_user.id == @budget.user_id  %>
+            <hr>
+            <%= @budget.user_id %>
+        </div>
     </div>
 </section>
 

@@ -1,8 +1,9 @@
 class BudgetsController < ApplicationController
 	before_action :require_user, only: [:index, :new, :show]
+	before_action :require_same_user, only: [:show, :edit, :update, :destroy]
 
 	def index
-		@budgets = Budget.all.order("created_at DESC")
+		@budgets = current_user.budgets.all.order("created_at DESC")
 	end
 
 	def new
@@ -11,7 +12,7 @@ class BudgetsController < ApplicationController
 
 	def create
 		@budget = Budget.new(budget_params)
-
+		@budget.user = current_user
 		if @budget.save
 			redirect_to @budget
 		else
@@ -49,5 +50,13 @@ class BudgetsController < ApplicationController
 	def budget_params
 		params.require(:budget).permit(:name, :description)
 	end
+
+	def require_same_user
+		@budget = Budget.find(params[:id])
+    if current_user.id != @budget.user_id
+      flash[:danger] = "You can only edit or delete your own article"
+      redirect_to root_path
+    end
+  end
 
 end
