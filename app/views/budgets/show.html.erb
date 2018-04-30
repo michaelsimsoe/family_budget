@@ -13,7 +13,7 @@
           <div class="level-right">
               <p class="level-item">
                 <%= link_to "Edit", edit_budget_path(@budget), class:"button" %>
-              </p>
+              </p> 
               <p class="level-item">
                 <%= link_to "Delete", budget_path(@budget), method: :delete, data: { confirm: "Are you sure?" }, class:"button is-danger" %>
                 </p>
@@ -24,19 +24,12 @@
         <div class="content">
             <%= @budget.description %>
         </div>
-        <div class="content">
-            <%= current_user %>
-            <hr>
-            <%= current_user.id == @budget.user_id  %>
-            <hr>
-            <%= @budget.user_id %>
-        </div>
     </div>
 </section>
 
 <section class="section comments">
     <div class="container">
-        <h2 class="subtitle is-5"><strong><%= @budget.expenses.count %></strong> Expenses</h2>
+        <h2 class="subtitle is-5"><strong><%= @budget.expenses.count  %></strong> Expenses, with a total amount: <%= @total_expense %></h2>
         
         <div class="box">
           <article class="media">

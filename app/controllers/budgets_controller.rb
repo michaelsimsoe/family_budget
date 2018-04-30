@@ -13,6 +13,7 @@ class BudgetsController < ApplicationController
 	def create
 		@budget = Budget.new(budget_params)
 		@budget.user = current_user
+		@users = User.all
 		if @budget.save
 			redirect_to @budget
 		else
@@ -22,11 +23,12 @@ class BudgetsController < ApplicationController
 
 	def show 
 		@budget = Budget.find(params[:id])
+		@total_expense = count_expenses
 	end
 
 	def update
 		@budget = Budget.find(params[:id])
-
+		@users = User.all
 		if @budget.update(budget_params)
 			redirect_to @budget
 		else
@@ -36,6 +38,7 @@ class BudgetsController < ApplicationController
 
 	def edit
 		@budget = Budget.find(params[:id])
+		@users = User.all
 	end
 
 	def destroy
@@ -54,9 +57,18 @@ class BudgetsController < ApplicationController
 	def require_same_user
 		@budget = Budget.find(params[:id])
     if current_user.id != @budget.user_id
-      flash[:danger] = "You can only edit or delete your own article"
-      redirect_to root_path
+      # flash[:danger] = "You can only edit or delete your own article"
+      redirect_to budgets_path
     end
+  end
+
+  def count_expenses
+  	@budget = Budget.find(params[:id])
+  	@total = 0
+  	@budget.expenses.each do |e|
+  		@total = @total + e.amount
+  	end
+  	return @total
   end
 
 end
