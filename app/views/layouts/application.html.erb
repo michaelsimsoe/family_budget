@@ -1,54 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Family Budget</title>
+    <title>FamilyBudgets</title>
     <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-      <section class="hero is-primary is-medium">
-      <!-- Hero head: will stick at the top -->
-      <div class="hero-head">
-        <nav class="navbar">
-          <div class="container">
-            <div class="navbar-brand">
-              <%= link_to 'Budgets', root_path, class: "navbar-item" %>
-              <% if current_user %>
-                <div class="navbar-item"><%= current_user.user_name %></div>
-              <% end %>
-              <span class="navbar-burger burger" data-target="navbarMenuHeroA">
-                <span></span>
-                <span></span>
-                <span></span>
-              </span>
-            </div>
-            <div id="navbarMenuHeroA" class="navbar-menu">
-              <div class="navbar-end">
-                <% if current_user %>
-                <%= link_to "Create New Budget", new_budget_path, class:"navbar-item" %>
-                  <%= link_to "Log out", logout_path, method: "delete", class:"navbar-item" %>
-                  <% else %>
-                  <%= link_to "Login", 'login', class:"navbar-item" %>
-                  <%= link_to "Signup", 'signup', class:"navbar-item" %>
-                <% end %>
-              </div>
-            </div>
-          </div>
-        </nav>
-      </div>
-
-      <!-- Hero content: will be in the middle -->
-      <div class="hero-body">
-        <div class="container has-text-centered">
-          <h1 class="title">
-            <%= yield :page_title %>
-          </h1>
-        </div>
-      </div>
-    </section>
     <%= yield %>
   </body>
 </html>
