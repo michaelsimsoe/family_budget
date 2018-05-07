@@ -1,0 +1,7 @@
+<h1>Welcome</h1>
+
+<%= link_to "logout", destroy_user_session_path, method: :delete %>
+<br>
+<%= link_to "create budget", new_family_budget_path %>
+<br>
+<%= link_to "see budget", family_budget_path(2) %>
