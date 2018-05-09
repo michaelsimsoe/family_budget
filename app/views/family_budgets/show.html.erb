@@ -3,4 +3,19 @@
 <br>
 <%= @family_budget.description %>
 <br>
+<h3>Add someone else to this budget</h3>
+<%= render 'users/lookup' %>
+<h3>Users who want to join this budget</h3>
+<ul>
+	<% @family_budget.pending_members.each do |request| %>
+		<li><%= 
+		request.email %>
+			<span>
+				<%= link_to "Accept membership", update_request_path(request: request, budget: @family_budget.id, user_id: request.id ), method: :post %>
+			</span>
+		</li>
+	<% end %>
+</ul>
+<br>
+<%= link_to "Edit", edit_family_budget_path %>
 <%= link_to "Home", root_path %>

@@ -1,5 +1,10 @@
 class FamilyBudgetsController < ApplicationController
-	def new 
+	def new
+		@family_budget = current_user.owner_or_member_of_budget?
+		if @family_budget != nil
+			puts "\nYou already have a budget\nFuck off!\n\n"
+			redirect_to root_path
+		end
 		@family_budget = FamilyBudget.new
 	end
 	def create
@@ -11,8 +16,28 @@ class FamilyBudgetsController < ApplicationController
 		end
 	end
 
+	def edit
+		@family_budget = current_user.owner_or_member_of_budget?
+	end
+
+	def update
+		@family_budget = current_user.owner_or_member_of_budget?
+		if @family_budget.update(budget_params)
+			redirect_to family_budget_path(@family_budget)
+		else
+			render 'edit'
+		end
+	end
+
 	def show
-		@family_budget = FamilyBudget.find(params[:id])
+		@family_budget = current_user.owner_or_member_of_budget?
+
+		if @family_budget == nil
+			puts "\nNo Budget\n\n"
+			redirect_to root_path
+			return
+		end
+		
 	end
 
 	private
@@ -20,4 +45,5 @@ class FamilyBudgetsController < ApplicationController
 	def budget_params
     params.require(:family_budget).permit(:name, :description)
   end
+
 end
