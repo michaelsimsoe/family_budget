@@ -1,0 +1,9 @@
+<%= form_for @sub_budget do |f| %>
+	<%= f.label :title %>
+	<%= f.text_field :title %>
+	<%= f.label :description %>
+	<%= f.text_area :description %>
+	<%= f.label :amount %>
+	<%= f.text_field :amount %>
+	<%= f.submit %>
+<% end %>

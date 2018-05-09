@@ -1,0 +1,11 @@
+<%= form_for @person_budget_notation do |f| %>
+	<%= f.label :title %>
+	<%= f.text_field :title %>
+	<%= f.label :description %>
+	<%= f.text_area :description %>
+	<%= f.label :amount %>
+	<%= f.text_area :amount %>
+	<%= f.label :notation_type %>
+	<%= f.text_area :notation_type %>
+	<%= f.submit %>
+<% end %>

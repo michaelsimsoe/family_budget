@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_09_145200) do
+ActiveRecord::Schema.define(version: 2018_05_09_172502) do
 
   create_table "family_budgets", force: :cascade do |t|
     t.integer "user_id"
@@ -44,11 +44,32 @@ ActiveRecord::Schema.define(version: 2018_05_09_145200) do
     t.integer "person_id"
     t.string "title"
     t.text "description"
-    t.string "type"
+    t.string "notation_type"
     t.integer "amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["person_id"], name: "index_person_budget_notations_on_person_id"
+  end
+
+  create_table "sub_budget_notations", force: :cascade do |t|
+    t.integer "sub_budget_id"
+    t.string "title"
+    t.text "description"
+    t.string "notation_type"
+    t.integer "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sub_budget_id"], name: "index_sub_budget_notations_on_sub_budget_id"
+  end
+
+  create_table "sub_budgets", force: :cascade do |t|
+    t.integer "family_budget_id"
+    t.string "title"
+    t.text "description"
+    t.integer "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["family_budget_id"], name: "index_sub_budgets_on_family_budget_id"
   end
 
   create_table "user_budgets", force: :cascade do |t|

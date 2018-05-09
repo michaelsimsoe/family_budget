@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   get 'members/destroy'
   resources :member_requests
   resources :people
+  resources :person_budget_notations
+  resources :sub_budgets
+  resources :sub_budget_notations
   devise_for :users, :controllers => { :registrations => "user/registrations" }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'welcome#index'
