@@ -7,6 +7,7 @@ class FamilyBudgetsController < ApplicationController
 		end
 		@family_budget = FamilyBudget.new
 	end
+	
 	def create
 		@family_budget = FamilyBudget.new(budget_params)
 		@family_budget.user = current_user

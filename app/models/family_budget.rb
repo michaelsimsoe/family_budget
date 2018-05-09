@@ -3,6 +3,7 @@ class FamilyBudget < ApplicationRecord
   has_many :user_budgets
   has_many :users, through: :user_budgets
   has_many :member_requests
+  has_many :people
   has_many :pending_members, through: :member_requests, source: :user
   # has_many :memberships, dependent: :destroy
   # has_many :members, through: :memberships

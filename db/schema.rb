@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_08_184051) do
+ActiveRecord::Schema.define(version: 2018_05_09_145200) do
 
   create_table "family_budgets", force: :cascade do |t|
     t.integer "user_id"
@@ -28,6 +28,27 @@ ActiveRecord::Schema.define(version: 2018_05_08_184051) do
     t.datetime "updated_at", null: false
     t.index ["family_budget_id"], name: "index_member_requests_on_family_budget_id"
     t.index ["user_id"], name: "index_member_requests_on_user_id"
+  end
+
+  create_table "people", force: :cascade do |t|
+    t.integer "family_budget_id"
+    t.string "name"
+    t.text "description"
+    t.integer "disposable_amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["family_budget_id"], name: "index_people_on_family_budget_id"
+  end
+
+  create_table "person_budget_notations", force: :cascade do |t|
+    t.integer "person_id"
+    t.string "title"
+    t.text "description"
+    t.string "type"
+    t.integer "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["person_id"], name: "index_person_budget_notations_on_person_id"
   end
 
   create_table "user_budgets", force: :cascade do |t|
