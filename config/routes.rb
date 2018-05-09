@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   resources :family_budgets, only: [:new, :create, :destroy, :show, :edit, :update]
-  resources :user_budgets, only: [:create]
+  resources :user_budgets, only: [:create, :destroy]
   get 'search_user', to: 'users#search'
   post 'add_user', to: "users#add_user"
   post 'create_request', to: 'member_requests#create'
