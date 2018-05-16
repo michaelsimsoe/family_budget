@@ -1,0 +1,30 @@
+var formInputs = document.querySelectorAll('.form-control');
+var TITLE = '<%= j @sub_budget_notation.title %>';
+var DESCRIPTION = '<%= j @sub_budget_notation.description %>';
+var AMOUNT = '<%= j @sub_budget_notation.amount.to_json %>';
+var NOTATION_TYPE = '<%= j @sub_budget_notation.notation_type %>';
+var ID = '<%= j @sub_budget_notation.id.to_json %>';
+formInputs.forEach(function(el) {
+	el.value = "";
+});
+formInputs[0].focus();
+
+var table = $('body > div.wrapper > div.main-panel > div > div > div:nth-child(2) > div > div > div.content > table > tbody');
+
+var data = `
+	<tr data-id="${ID}">
+	  <th scope="row">${TITLE}</th>
+	  <td class="hidden-sm hidden-xs"">${DESCRIPTION}</td>
+	  <td>${AMOUNT}</td>
+	  <td>${ID}</td>
+	  <td>
+	  	<a class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal" data-remote="true" href="/sub_budget_notations/${ID}/edit">Edit</a>
+			<!-- <button type="button" class="btn btn-secondary btn-xs">Delete</button> -->
+			<a class="btn btn-danger btn-xs" data-remote="true" rel="nofollow" data-method="delete" href="/sub_budget_notations/${ID}">Delete</a>
+	  </td>
+	</tr>
+`;
+
+table.append(data);
+
+

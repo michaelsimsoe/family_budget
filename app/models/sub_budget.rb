@@ -1,4 +1,4 @@
 class SubBudget < ApplicationRecord
   belongs_to :family_budget
-  has_many :sub_budget_notations
+  has_many :sub_budget_notations, dependent: :destroy
 end

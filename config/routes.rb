@@ -6,9 +6,10 @@ Rails.application.routes.draw do
   resources :person_budget_notations
   resources :sub_budgets
   resources :sub_budget_notations
+  get 'edit_sub_budget_notation/:id', to: 'sub_budget_notations_controller#edit'
   devise_for :users, :controllers => { :registrations => "user/registrations" }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root 'welcome#index'
+  root 'home#index'
 
   resources :family_budgets, only: [:new, :create, :destroy, :show, :edit, :update]
   resources :user_budgets, only: [:create, :destroy]

@@ -1,11 +1,21 @@
-<%= form_for @sub_budget_notation do |f| %>
-	<%= f.label :title %>
-	<%= f.text_field :title %>
-	<%= f.label :description %>
-	<%= f.text_area :description %>
-	<%= f.label :amount %>
-	<%= f.text_area :amount %>
-	<%= f.label :notation_type %>
-	<%= f.text_area :notation_type %>
-	<%= f.submit %>
+<%= form_for @sub_budget_notation, remote: true do |f| %>
+	<div class="form-inline">
+		<div class="form-group">
+			<%= f.label :title %>
+			<%= f.text_field :title, class: "form-control" %>
+			<%= f.label :description %>
+			<%= f.text_field :description, class: "form-control" %>
+		</div>
+		<div class="form-group">
+			<%= f.label :amount %>
+			<%= f.text_field :amount, class: "form-control" %>
+			<%= f.label :notation_type %>
+			<%= f.text_field :notation_type, class: "form-control" %>
+		</div>
+		<div class="form-group">
+			<%= f.submit "Update", class: "btn btn-default btn-xs" %>
+			<button type="button" class="btn btn-default btn-xs" data-dismiss="modal">Close</button>
+		</div>
+	</div>
+	</div>
 <% end %>

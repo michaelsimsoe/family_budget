@@ -1,5 +1,7 @@
 class SubBudgetsController < ApplicationController
 	def index
+		@sub_budgets = current_user.family_budget.sub_budgets
+		@new_sub_budget_notation = SubBudgetNotation.new
 	end
 	def new
 		@sub_budget = SubBudget.new
@@ -11,8 +13,33 @@ class SubBudgetsController < ApplicationController
 		@sub_budget.family_budget_id = @budget.id
 		if @sub_budget.save
 			puts "success"
-			redirect_to family_budget_path(@budget)
+			# redirect_to family_budget_path(@budget)
+			redirect_to root_path
 		end
+	end
+
+	def edit
+		@sub_budget = SubBudget.find(params[:id])
+	end
+
+	def update
+		@sub_budget = SubBudget.find(params[:id])
+		if @sub_budget.update(sub_budget_params)
+			redirect_to sub_budgets_path
+		else
+
+		end
+	end
+
+	def show
+		@sub_budg
+		ets = current_user.family_budget.sub_budgets
+	end
+
+	def destroy
+		@sub_budget = SubBudget.find(params[:id])
+		@sub_budget.destroy
+		redirect_to root_path
 	end
 
 	private
@@ -20,4 +47,5 @@ class SubBudgetsController < ApplicationController
 	def sub_budget_params
     params.require(:sub_budget).permit(:title, :description, :amount)
   end
+
 end

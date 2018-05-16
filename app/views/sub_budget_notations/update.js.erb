@@ -1,0 +1,17 @@
+var TITLE = '<%= j @sub_budget_notation.title %>';
+var DESCRIPTION = '<%= j @sub_budget_notation.description %>';
+var AMOUNT = '<%= j @sub_budget_notation.amount.to_json %>';
+var NOTATION_TYPE = '<%= j @sub_budget_notation.notation_type %>';
+var ID = '<%= j @sub_budget_notation.id.to_json %>';
+$("#myModal").modal('hide');
+var current = $("table").find(`tr[data-id=${ID}]`);
+
+var thTitle = current[0].children[0];
+var trDesc = current[0].children[1];
+var trAmount = current[0].children[2];
+var trType = current[0].children[3];
+
+thTitle.innerHTML = TITLE;
+trDesc.innerHTML = DESCRIPTION;
+trAmount.innerHTML = AMOUNT;
+trType.innerHTML = NOTATION_TYPE;

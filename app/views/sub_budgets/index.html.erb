@@ -1,2 +1,12 @@
 <h1>Sub Budgets</h1>
-<%= link_to "New Sub Budget", new_sub_budget_path %>
+
+<div class="row">
+
+    <div class="col-md-12">
+    	<%= link_to "New Sub Budget", new_sub_budget_path, class: "btn btn-success btn-lg btn-block", method: :get %>
+
+      
+        <%= render "home/subbudget" %>  
+      
+    </div>
+</div>

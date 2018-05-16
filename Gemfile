@@ -8,6 +8,10 @@ gem 'rails', '~> 5.2.0'
 
 gem 'devise'
 
+# gem 'bootstrap', '~> 4.1.1'
+# gem 'jquery-rails'
+# gem 'sprockets-rails', :require => 'sprockets/railtie'
+
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets

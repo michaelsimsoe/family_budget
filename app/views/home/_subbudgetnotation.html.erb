@@ -1,0 +1,13 @@
+<% sb.sub_budget_notations.each do |sbn| %>
+	<tr data-id="<%= sbn.id %>">
+	  <th scope="row"><%= sbn.title %></th>
+	  <td class="hidden-sm hidden-xs""><%= sbn.description %></td>
+	  <td><%= sbn.amount %></td>
+	  <td><%= sbn.id %></td>
+	  <td>
+	  	<%= link_to "Edit", edit_sub_budget_notation_path(id: sbn.id), remote: true, class: "btn btn-primary btn-xs", "data-toggle" => "modal", "data-target" => "#myModal" %>
+			<!-- <button type="button" class="btn btn-secondary btn-xs">Delete</button> -->
+			<%= link_to "Delete", sub_budget_notation_path(id: sbn.id), remote: true, class: "btn btn-danger btn-xs",method: :delete %>
+	  </td>
+	</tr>
+<% end %>

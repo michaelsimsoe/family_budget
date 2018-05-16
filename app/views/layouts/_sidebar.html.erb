@@ -1,0 +1,46 @@
+<div class="sidebar" data-color="green" data-image="<%= asset_path("sidebar-4.jpg") %>">
+
+  <div class="sidebar-wrapper">
+        <div class="logo">
+            <a href="#" class="simple-text">
+                Family Budget
+            </a>
+        </div>
+
+        <ul class="nav">
+            <li class="<%= current_class?(root_path) %>">
+                <%= link_to root_path, method: :get do %>
+                    <i class="pe-7s-graph"></i>
+                    <p>BUDGET</p>
+                <% end %>
+            </li>
+            <li class="<%= current_class?(people_path) %>">
+                <%= link_to people_path, method: :get do %>
+                    <i class="pe-7s-users"></i>
+                    <p>PEOPLE</p>
+                <% end %>
+            </li>
+            <li class="<%= current_class?(sub_budgets_path) %>">
+                <%= link_to sub_budgets_path, method: :get do %>
+                    <i class="pe-7s-news-paper"></i>
+                    <p>SUB BUDGET</p>
+                <% end %>
+            </li>
+            <li class="<%= current_class?(edit_user_registration_path) %>">
+                <%= link_to edit_user_registration_path, method: :get do %>
+                    <i class="pe-7s-config"></i>
+                    <p>SETTINGS</p>
+                <% end %>
+            </li>
+        </ul>
+        
+        <ul class="nav">
+            <li>
+                <%= link_to destroy_user_session_path, method: :delete do %>
+                    <i class="pe-7s-power"></i>
+                    <p>LOG OUT</p>
+                <% end %>
+            </li>
+        </ul>
+  </div>
+</div>
