@@ -1,11 +1,19 @@
-<%= form_for @person_budget_notation do |f| %>
-	<%= f.label :title %>
-	<%= f.text_field :title %>
-	<%= f.label :description %>
-	<%= f.text_area :description %>
-	<%= f.label :amount %>
-	<%= f.text_area :amount %>
-	<%= f.label :notation_type %>
-	<%= f.text_area :notation_type %>
-	<%= f.submit %>
+<%= form_for @person_budget_notation, :html => { :class => "form-inline" }, remote: true do |f| %>
+		<div class="form-group">
+			<%= f.label :title, class: "sr-only" %>
+			<%= f.text_field :title, class: "form-control", placeholder: "Title" %>
+			<%= f.label :description, class: "sr-only" %>
+			<%= f.text_field :description, class: "form-control", placeholder: "Description" %>
+			<%= f.label :amount, class: "sr-only" %>
+			<%= f.text_field :amount, class: "form-control", placeholder: "Amount" %>
+			<%= f.radio_button :notation_type, "deposit", class: "form-control radio-inline" %>
+			<%= f.label :notation_type, "Deposit" %>
+			<%= f.radio_button :notation_type, "withdrawal", class: "form-control radio-inline" %>
+			<%= f.label :notation_type, "Withdrawal" %>
+		</div>
+		<div class="form-group">
+			<%= f.submit "Update", class: "btn btn-default btn-xs" %>
+			<button type="button" class="btn btn-default btn-xs" data-dismiss="modal">Close</button>
+		</div>
+	</div>
 <% end %>

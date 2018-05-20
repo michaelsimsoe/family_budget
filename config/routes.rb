@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :family_budgets, only: [:new, :create, :destroy, :show, :edit, :update]
   resources :user_budgets, only: [:create, :destroy]
   get 'search_user', to: 'users#search'
+  get 'no_budget', to: 'home#nobudget'
   post 'add_user', to: "users#add_user"
   post 'create_request', to: 'member_requests#create'
   post 'update_request', to: 'member_requests#update'

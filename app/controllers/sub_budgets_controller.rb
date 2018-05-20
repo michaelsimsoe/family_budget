@@ -1,8 +1,14 @@
 class SubBudgetsController < ApplicationController
 	def index
+		@family_budgets = FamilyBudget.all
+		if !current_user.family_budget.present? && !current_user.family_budgets.present?
+			redirect_to no_budget_path
+			return
+		end
 		@sub_budgets = current_user.family_budget.sub_budgets
 		@new_sub_budget_notation = SubBudgetNotation.new
 	end
+	
 	def new
 		@sub_budget = SubBudget.new
 	end
@@ -32,8 +38,7 @@ class SubBudgetsController < ApplicationController
 	end
 
 	def show
-		@sub_budg
-		ets = current_user.family_budget.sub_budgets
+		@sub_budgets = current_user.family_budget.sub_budgets
 	end
 
 	def destroy

@@ -1,9 +1,9 @@
 var formInputs = document.querySelectorAll('.form-control');
-var TITLE = '<%= j @sub_budget_notation.title %>';
-var DESCRIPTION = '<%= j @sub_budget_notation.description %>';
-var AMOUNT = '<%= j @sub_budget_notation.amount.to_json %>';
-var NOTATION_TYPE = '<%= j @sub_budget_notation.notation_type %>';
-var ID = '<%= j @sub_budget_notation.id.to_json %>';
+var TITLE = '<%= j @person_budget_notation.title %>';
+var DESCRIPTION = '<%= j @person_budget_notation.description %>';
+var AMOUNT = '<%= j @person_budget_notation.amount.to_json %>';
+var NOTATION_TYPE = '<%= j @person_budget_notation.notation_type %>';
+var ID = '<%= j @person_budget_notation.id.to_json %>';
 var fullData;
 formInputs.forEach(function(el) {
 	el.value = "";
@@ -72,4 +72,3 @@ $.notify({
       type: 'success',
       timer: 1000
 });
-

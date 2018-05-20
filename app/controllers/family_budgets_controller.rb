@@ -13,7 +13,7 @@ class FamilyBudgetsController < ApplicationController
 		@family_budget.user = current_user
 		if @family_budget.save
 			puts "success"
-			redirect_to family_budget_path(@family_budget) 
+			redirect_to root_path
 		end
 	end
 
@@ -24,7 +24,7 @@ class FamilyBudgetsController < ApplicationController
 	def update
 		@family_budget = current_user.owner_or_member_of_budget?
 		if @family_budget.update(budget_params)
-			redirect_to family_budget_path(@family_budget)
+			redirect_to root_path
 		else
 			render 'edit'
 		end

@@ -1,0 +1,12 @@
+var ID = '<%= j @user_budget.user_id.to_json %>';
+$(`a[href$="user_id=${ID}"]`).replaceWith('<a>No Notifications</a>');
+
+$.notify({
+    icon: 'pe-7s-users',
+    message: "A user has been added to your budget."
+
+  },{
+      type: 'info',
+      timer: 2000
+});
+

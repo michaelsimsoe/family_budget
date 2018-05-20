@@ -22,16 +22,23 @@ class MemberRequestsController < ApplicationController
 
 	def update
 		@member_request = User.find(params[:user_id]).member_requests.first
-		budget = params[:budget]
+		budget = current_user.family_budget
 		user = params[:user_id]
+		useremail = User.find(params[:user_id]).email
 		@user_budget = UserBudget.create(family_budget_id: budget, user_id: user)
 		if @user_budget.save
 			puts "ok"
+			respond_to do |format|
+    		# format.html { redirect_to no_budget_url }
+    		
+    		format.json { render :json => @user_budget }
+    		format.js
+   		end
 		else
-			pust "fuck"
+			puts "fuck"
 		end
+		
 		MemberRequest.destroy(@member_request.id)
-		redirect_to family_budget_path(budget)
 	end
 
 	def destroy

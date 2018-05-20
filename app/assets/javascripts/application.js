@@ -22,3 +22,6 @@
 //= require bootstrap-select
 //= require light-bootstrap-dashboard
 //= require demo.js
+//= require sub_budget_notations
+//
+

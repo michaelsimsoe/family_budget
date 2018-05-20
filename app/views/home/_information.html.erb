@@ -1,0 +1,40 @@
+<div class="card card-info">
+  <div class="header">
+    <h4 class="title">Information</h4>
+  </div>
+  <div class="content info-content">
+  	<div class="people">
+  		<div class="list-group">
+  		<% if !@people.present?%>
+  			<h5>No People in this Budget.</h5>
+			<% else %>
+				<h5>People in this Budget</h5>
+  			<div class="list-group person">
+				<% @people.each do |person| %>    
+				  <a href="#" class="list-group-item">
+				    <h4 class="list-group-item-heading"><%= person.name %></h4>
+				    <p class="list-group-item-text">Disposable: <%= person.disposable_amount %></p>
+				    <p class="list-group-item-text">Out: <%= person.total_out %></p>
+				    <p class="list-group-item-text">Rest: <%= person.rest %></p>
+				  </a>
+		  	<% end %>
+		  	</div>
+			<% end %>
+  	</div>
+	  </div>
+	  <div class="stats">
+	  	<h5>Stats</h5>
+	  	<div class="list-group">
+				<li class="list-group-item">
+					Total in to budget: <%= current_user.family_budget.total_in_to_budget %>
+					</li>
+  			<li class="list-group-item">
+  				Total out from budget: <%= current_user.family_budget.total_out_from_budget %>
+  			</li>
+  			<li class="list-group-item">
+  				Balance: <%= current_user.family_budget.balance %>
+  			</li>
+			</div>
+		</div>
+	</div>
+</div>

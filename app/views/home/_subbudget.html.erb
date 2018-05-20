@@ -1,4 +1,4 @@
-<% if @sub_budgets.empty? %>
+<% if !@sub_budgets.present? %>
   <div class="card">
     <div class="header">
       <h4 class="title">No Sub Budgets</h4>
@@ -7,53 +7,24 @@
       <%= link_to "Create Sub Budget", new_sub_budget_path, class: "btn btn-default btn-lg", method: :get %>
     </div>
   </div>
-<% elsif @sub_budgets.size == 1 %>
-  <div class="card ">
-      <div class="header">
-          <h4 class="title"><%= @sub_budgets.take.title %></h4>
-          <p class="category"><%= @sub_budgets.take.description %></p>
-          <%= link_to "Delete", sub_budget_path(id: @sub_budgets.take.id), class: "btn btn-danger btn-sm pull-right", method: :delete %>
-          <%= link_to "Edit", edit_sub_budget_path(id: @sub_budgets.take.id), class: "btn btn-default btn-sm pull-right", method: :get %>
-      </div>
-      <div class="content">
-              <% if !@sub_budgets.first.sub_budget_notations.first.present? %>
-                <p>No Notations.</p>
-                <%= render "sub_budget_notations/new", sb: @sub_budgets.first %>
-              <% else %>
-              <table class="table table-striped table-condensed">
-              <thead>
-                  <tr>
-                    <th scope="col">Title</th>
-                    <th scope="col" class="hidden-sm hidden-xs">Description</th>
-                    <th scope="col">Amount</th>
-                    <th scope="col">Type</th>
-                    <th scope="col">Action</th>              
-                  </tr>
-                </thead>
-                <tbody>
-                <%= render "home/subbudgetnotation",  sb: @sub_budgets.first %>
-                <%= render "sub_budget_notations/new", sb: @sub_budgets.first %>
-              <% end %>
-            </tbody>
-            
-          </table>
-      </div>
-  </div>
 <% else %>
-    <%= @sub_budgets.each do |sb| %>
+    <% @sub_budgets.each do |sb| %>
   <div class="card ">
       <div class="header">
           <h4 class="title"><%= sb.title %></h4>
           <p class="category"><%= sb.description %></p>
+          <p class="category"><%= sb.incomming %></p>
+          <p class="category"><%= sb.outgoing %></p>
+          <p class="category"><%= sb.balance %></p>
           <%= link_to "Delete", sub_budget_path(id: sb.id), class: "btn btn-danger btn-sm pull-right", method: :delete %>
           <%= link_to "Edit", edit_sub_budget_path(id: sb.id), class: "btn btn-default btn-sm pull-right", method: :get %>
       </div>
       <div class="content">
-              <% if !sb.sub_budget_notations.take.present? %>
+              <% if !sb.sub_budget_notations.first.present? %>
                 <p class="mb-5">No Notations.</p>
                 <%= render "sub_budget_notations/new", sb: sb %>
-              <% elsif sb.sub_budget_notations.take.present?
-                 %>
+              <% else %>
+              <%= render "sub_budget_notations/new", sb: sb %>
               <table class="table table-striped table-condensed">
               <thead>
                   <tr>
@@ -66,7 +37,6 @@
                 </thead>
                 <tbody>
                 <%= render "home/subbudgetnotation",  sb: sb %>
-                <%= render "sub_budget_notations/new", sb: sb %>
               <% end %>
             </tbody>
             

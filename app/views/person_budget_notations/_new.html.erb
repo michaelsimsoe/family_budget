@@ -1,4 +1,4 @@
-<%= form_for @new_sub_budget_notation,  :html => { :class => "form-inline" }, remote: true do |f| %>
+<%= form_for @new_person_budget_notation,  :html => { :class => "form-inline" }, remote: true do |f| %>
 
 		<div class="form-group">
 			<%= f.label :title, class: "sr-only" %>
@@ -14,11 +14,10 @@
 			<%= f.label :notation_type, "Deposit" %>
 			<%= f.radio_button :notation_type, "withdrawal", class: "form-control radio-inline" %>
 			<%= f.label :notation_type, "Withdrawal" %>
-			
 		</div>
 		
 		<div class="form-group">
-			<%= f.hidden_field :sub_budget_id, :value => sb.id %>
+			<%= f.hidden_field :person_id, :value => p.id %>
 			<%= f.submit "Add", class: "btn btn-primary btn new-btn" %>
 		</div>
 

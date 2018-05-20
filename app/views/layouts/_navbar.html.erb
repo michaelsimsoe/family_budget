@@ -14,24 +14,35 @@
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-left">
               
-                <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-globe"></i>
-                            <b class="caret hidden-lg hidden-md"></b>
-          <p class="hidden-lg hidden-md">
-            5 Notifications
-            <b class="caret"></b>
-          </p>
+                <%# render 'layouts/notification' %>
 
-                      </a>
-                      <ul class="dropdown-menu">
-                        <li><a href="#">Notification 1</a></li>
-                        <li><a href="#">Notification 2</a></li>
-                        <li><a href="#">Notification 3</a></li>
-                        <li><a href="#">Notification 4</a></li>
-                        <li><a href="#">Another notification</a></li>
-                      </ul>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-globe"></i>
+                    <b class="caret hidden-lg hidden-md"></b>
+                    <p class="hidden-lg hidden-md">
+                      5 Notifications
+                      <b class="caret"></b>
+                    </p>
+                  </a>
+
+                  <ul class="dropdown-menu notifications">
+                    <% if current_user.family_budget.present? && current_user.family_budget.pending_members.present? %>
+                      <% current_user.family_budget.pending_members.each do |request| %>
+                          <li>
+                            <%= link_to update_request_path(request: request, budget: current_user.family_budget.id, user_id: request.id), remote: true,  method: :post  do %>
+                              <%= request.email %> want to join your Budget!
+                            <% end %>
+                          </li>
+                        <% end %>
+                    <% else %>
+                        <li>
+                            <a>No notifications</a>
+                        </li>
+                    <% end %>
+                  </ul>
                 </li>
+
             </ul>
 
             <ul class="nav navbar-nav navbar-right">

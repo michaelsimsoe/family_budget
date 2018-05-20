@@ -8,4 +8,28 @@ class FamilyBudget < ApplicationRecord
   has_many :pending_members, through: :member_requests, source: :user
   # has_many :memberships, dependent: :destroy
   # has_many :members, through: :memberships
+  
+
+  def total_in_to_budget
+  	total_in = 0
+  	self.sub_budgets.each do |sb|
+  		total_in += sb.incomming
+  	end
+
+  	return total_in
+  end
+
+  def total_out_from_budget
+  	total_out = 0
+  	self.sub_budgets.each do |sb|
+  		total_out += sb.outgoing
+  	end
+
+  	return total_out
+  end
+
+  def balance
+  	return self.total_in_to_budget - self.total_out_from_budget
+  end
+
 end
