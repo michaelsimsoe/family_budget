@@ -1,0 +1,39 @@
+<div class="col-md-12">
+	<div class="card card-info">
+		<div class="header">
+			<h4 class="title">Invite other members to this Family Budget</h4>
+		</div>
+		<div class="content">
+			<%= form_tag search_user_path, remote: true, method: :get do %>
+				<%= text_field_tag :search_param, params[:search_param], placeholder: "Enter name or email", autofocus: true, class: "" %>
+				<%= button_tag(type: :submit, class: "") do %>
+					Search
+				<% end %>
+			<% end %>
+			<div id="results">
+				<%= render 'users/result' %>
+			</div>
+		</div>
+	</div>
+</div>
+
+<% if current_user.family_budget.present? && current_user.family_budget.pending_members.present? %>
+<div class="col-md-12 hidden-md hidden-lg">
+	<div class="card card-info">
+		<div class="header">
+			<h4 class="title">Users who want to join</h4>
+		</div>
+		<div class="content">
+			<ul class="list-group">
+			  <% current_user.family_budget.pending_members.each do |request| %>
+			      <li class="list-group-item">
+			        <%= link_to update_request_path(request: request, budget: current_user.family_budget.id, user_id: request.id), remote: true,  method: :post  do %>
+			          <%= request.email %> want to join your Budget!
+			        <% end %>
+			      </li>
+			    <% end %>
+			  </ul>
+		</div>
+	</div>
+</div>
+<% end %>	

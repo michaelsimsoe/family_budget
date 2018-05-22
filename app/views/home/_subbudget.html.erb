@@ -13,11 +13,11 @@
       <div class="header">
           <h4 class="title"><%= sb.title %></h4>
           <p class="category"><%= sb.description %></p>
-          <p class="category"><%= sb.incomming %></p>
-          <p class="category"><%= sb.outgoing %></p>
-          <p class="category"><%= sb.balance %></p>
-          <%= link_to "Delete", sub_budget_path(id: sb.id), class: "btn btn-danger btn-sm pull-right", method: :delete %>
-          <%= link_to "Edit", edit_sub_budget_path(id: sb.id), class: "btn btn-default btn-sm pull-right", method: :get %>
+          <p class="category-info"><strong>Inn:</strong> <%= sb.incomming %></p>
+          <p class="category-info"><strong>Out:</strong> <%= sb.outgoing %></p>
+          <p class="category-info"><strong>Balance: </strong><%= sb.balance %></p>
+          <%= link_to "Delete", sub_budget_path(id: sb.id), class: "btn btn-danger btn-sm", method: :delete %>
+          <%= link_to "Edit", edit_sub_budget_path(id: sb.id), class: "btn btn-default btn-sm", method: :get %>
       </div>
       <div class="content">
               <% if !sb.sub_budget_notations.first.present? %>
@@ -29,9 +29,8 @@
               <thead>
                   <tr>
                     <th scope="col">Title</th>
-                    <th scope="col">Description</th>
+                    <th scope="col" class="hidden-sm hidden-xs">Description</th>
                     <th scope="col">Amount</th>
-                    <th scope="col">Type</th>
                     <th scope="col">Action</th>              
                   </tr>
                 </thead>

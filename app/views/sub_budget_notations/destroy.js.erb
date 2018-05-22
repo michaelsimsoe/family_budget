@@ -1,14 +1,14 @@
+var flash = createFlashMessage('<%= j flash[:notice] %>', '<%= j flash[:alert] %>');
+$.notify({
+    icon: 'pe-7s-trash',
+    message: flash.message
+
+  },{
+      type: flash.messageType,
+      timer: 500
+});
+
 var ID = '<%= j @sub_budget_notation.id.to_json %>';
 var current = $("table").find(`tr[data-id=${ID}]`);
 
 current[0].remove();
-
-$.notify({
-    icon: 'pe-7s-trash',
-    message: "Notation has been deleted."
-
-  },{
-      type: 'danger',
-      timer: 1000
-});
-

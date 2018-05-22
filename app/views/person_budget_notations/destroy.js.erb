@@ -1,13 +1,13 @@
 var ID = '<%= j @person_budget_notation.id.to_json %>';
 var current = $("table").find(`tr[data-id=${ID}]`);
-
-current[0].remove();
-
+var flash = createFlashMessage('<%= j flash[:notice] %>', '<%= j flash[:alert] %>');
 $.notify({
     icon: 'pe-7s-trash',
-    message: "Notation has been deleted."
+    message: flash.message
 
   },{
-      type: 'danger',
-      timer: 1000
+      type: flash.messageType,
+      timer: 500
 });
+
+current[0].remove();

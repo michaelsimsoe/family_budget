@@ -11,18 +11,16 @@ class MemberRequestsController < ApplicationController
 		@member_request = MemberRequest.new(family_budget_id: budget.id, user_id: user.id)
 
 		if @member_request.save
-			puts "Request added"
+      flash[:notice] = "Request sent!"
     else
-    	puts user
-    	puts budget
-      puts "!\nThere was something wrong with the request! ! ! !\n!"
+    	flash[:alert] = "Something went wrong!"
     end  
     redirect_to root_path
 	end
 
 	def update
 		@member_request = User.find(params[:user_id]).member_requests.first
-		budget = current_user.family_budget
+		budget = current_user.family_budget.id
 		user = params[:user_id]
 		useremail = User.find(params[:user_id]).email
 		@user_budget = UserBudget.create(family_budget_id: budget, user_id: user)
@@ -30,12 +28,12 @@ class MemberRequestsController < ApplicationController
 			puts "ok"
 			respond_to do |format|
     		# format.html { redirect_to no_budget_url }
-    		
     		format.json { render :json => @user_budget }
     		format.js
    		end
+   		flash[:notice] = "Member was added!"
 		else
-			puts "fuck"
+			flash[:alert] = "Something went wrong!"
 		end
 		
 		MemberRequest.destroy(@member_request.id)

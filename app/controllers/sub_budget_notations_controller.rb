@@ -19,6 +19,9 @@ class SubBudgetNotationsController < ApplicationController
       	format.json { render :json => @sub_budget_notation }
       	format.js
    		end
+   		flash[:notice] = "Notation has been created!"
+   	else
+   		flash[:alert] = "Notation was not created!"
 		end
 	end
 
@@ -45,8 +48,9 @@ class SubBudgetNotationsController < ApplicationController
       	format.json { render :json => @sub_budget_notation }
       	format.js
    		end
+   		flash[:alert] = "Notation was deleted!"
    	else
-
+   		flash[:alert] = "Notation could NOT be deleted!"
    	end
 	end
 

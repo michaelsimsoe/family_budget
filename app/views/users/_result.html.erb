@@ -1,28 +1,22 @@
 <% if @users %>
   <% if @users.size > 0 %>
-      <table class="search-results-table col-md-12">
-        <tbody>
+    <ul class="list-group">
           <% @users.each do |user| %>
-            <tr>
-              <td><strong>Name:</strong> <%= user.full_name %></td>
-              <td><strong>Email:</strong> <%= user.email %></td>
-              <td>
-                <% if !user.user_budgets.present? %>
+            <li class="list-group-item">
+              <strong>Name:</strong> <%= user.full_name %>
+              <strong>Email:</strong> <%= user.email %>
+              <% if !user.family_budgets.present? %>
                   <% if current_user.family_budget.present? %>
-                    <%= link_to "Add this user to budget", add_user_path(user: user, family_budget: current_user.family_budget.id),
-                                                    class: "", method: :post %>
+                    <%= link_to "Add", add_user_path(user: user, family_budget: current_user.family_budget.id), class: "btn btn-primary btn-xs", method: :post %>
                   <% elsif current_user.family_budgets.present? %>
-                    <%= link_to "Add this user to budget", add_user_path(user: user, family_budget: @family_budget),
-                                                    class: "", method: :post %>
+                    <%= link_to "Add", add_user_path(user: user, family_budget: @family_budget), class: "btn btn-primary btn-xs", method: :post %>
                   <% end %>
-                <% else %>
+              <% else %>
                 User already added
-                <% end %>
-              </td>
-            </tr>
+              <% end %>
+            </li>
+
           <% end %>
-        </tbody>
-      </table>
-    </div>
+        </ul>
   <% end %>
 <% end %>

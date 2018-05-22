@@ -6,9 +6,9 @@ class HomeController < ApplicationController
 			redirect_to no_budget_path
 			return
 		end
-		@sub_budgets = current_user.family_budget.sub_budgets
+		@sub_budgets = current_user.owner_or_member_of_budget?.sub_budgets
 		@new_sub_budget_notation = SubBudgetNotation.new
-		@people = current_user.family_budget.people
+		@people = current_user.owner_or_member_of_budget?.people
 		@new_person_budget_notation = PersonBudgetNotation.new
 	
 	end

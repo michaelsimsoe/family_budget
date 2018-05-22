@@ -1240,7 +1240,7 @@ fieldset[disabled] .btn-neutral.active {
     left: 5px;
 }
 
-.table > thead > tr > th,
+/*.table > thead > tr > th,
 .table > tbody > tr > th,
 .table > tfoot > tr > th,
 .table > thead > tr > td,
@@ -1248,7 +1248,7 @@ fieldset[disabled] .btn-neutral.active {
 .table > tfoot > tr > td {
     padding: 12px 8px;
     vertical-align: middle;
-}
+}*/
 
 .table > thead > tr > th {
     border-bottom-width: 1px;

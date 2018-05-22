@@ -1,0 +1,33 @@
+var chart = {
+
+	makePieChart: function(dataObj) {
+		var labels = [];
+		var series = [];
+
+		console.log("The Object", dataObj.length);
+
+		for (var i = 0; i < dataObj.length; i++) {
+			console.log("Inside the loop", i + ": " + dataObj[i]);
+			if (dataObj[i].notation_type == "withdrawal" && dataObj[i].amount != null) {
+				labels.push(dataObj[i].title);
+				series.push(dataObj[i].amount);
+			}
+		}
+
+		var data = {
+			labels: labels,
+			series: series
+		}
+
+		console.log(data);
+
+		return Chartist.Pie('#chartPreferences', data);
+	}
+
+	// var data = {
+	//             labels: ['Bananas', 'Apples', 'Grapes'],
+	//             series: [20, 15, 40]
+	// };
+	// Chartist.Pie('#chartPreferences', data);
+
+}

@@ -1,5 +1,14 @@
-.info-content {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
+// .info-content {
+// 	display: flex;
+// 	flex-direction: row;
+// 	justify-content: space-between;
+// }
+
+
+tr.type-withdrawal {
+	border-left: #FF4A55 solid 1px;
+}
+
+tr.type-deposit {
+	border-left: #3472F7 solid 1px;
 }

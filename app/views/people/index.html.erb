@@ -14,9 +14,9 @@
 			<div class="card">
     		<div class="header">
       		<h4 class="title"><%= person.name %></h4>
-          <p><%= person.disposable_amount %></p>
-          <p><%= person.total_out %></p>
-          <p><%= person.rest %></p>
+          <p><strong>Funds:</strong> <%= person.total_in %></p>
+          <p><strong>Out:</strong> <%= person.total_out %></p>
+          <p><strong>Rest:</strong> <%= person.rest %></p>
       		<%= link_to "Delete", person_path(id: person.id), class: "btn btn-danger btn-sm pull-right", method: :delete %>
           <%= link_to "Edit", edit_person_path(id: person.id), class: "btn btn-default btn-sm pull-right", method: :get %>
     		</div>
@@ -28,7 +28,6 @@
                     <th scope="col">Title</th>
                     <th scope="col" class="hidden-sm hidden-xs">Description</th>
                     <th scope="col">Amount</th>
-                    <th scope="col">Type</th>
                     <th scope="col">Action</th>              
                   </tr>
                 </thead>

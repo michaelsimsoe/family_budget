@@ -9,6 +9,10 @@ class FamilyBudget < ApplicationRecord
   # has_many :memberships, dependent: :destroy
   # has_many :members, through: :memberships
   
+  def owner_of_budget
+    user = User.find(self.user_id)
+    user.full_name
+  end
 
   def total_in_to_budget
   	total_in = 0
@@ -30,6 +34,18 @@ class FamilyBudget < ApplicationRecord
 
   def balance
   	return self.total_in_to_budget - self.total_out_from_budget
+  end
+
+  def getAllNotations
+    notations = []
+    self.sub_budgets.each do |sb|
+      sb.sub_budget_notations.each do |sbn|
+        notations << sbn
+      end
+    end
+
+    notations_json = notations.to_json
+    return notations_json.html_safe
   end
 
 end

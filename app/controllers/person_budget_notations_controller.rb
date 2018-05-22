@@ -44,7 +44,9 @@ class PersonBudgetNotationsController < ApplicationController
       	format.json { render :json => @person_budget_notation }
       	format.js
    		end
+   		flash[:alert] = "Notation was deleted!"
    	else
+   		flash[:alert] = "Notation could NOT be deleted!"
 
    	end
 	end

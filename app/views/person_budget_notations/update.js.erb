@@ -1,0 +1,26 @@
+var TITLE = '<%= j @person_budget_notation.title %>';
+var DESCRIPTION = '<%= j @person_budget_notation.description %>';
+var AMOUNT = '<%= j @person_budget_notation.amount.to_json %>';
+var NOTATION_TYPE = '<%= j @person_budget_notation.notation_type %>';
+var ID = '<%= j @person_budget_notation.id.to_json %>';
+$("#myModal").modal('hide');
+var current = $("table").find(`tr[data-id=${ID}]`);
+
+var thTitle = current[0].children[0];
+var trDesc = current[0].children[1];
+var trAmount = current[0].children[2];
+var trType = current[0].children[3];
+
+thTitle.innerHTML = TITLE;
+trDesc.innerHTML = DESCRIPTION;
+trAmount.innerHTML = AMOUNT;
+
+var flash = createFlashMessage('<%= j flash[:notice] %>', '<%= j flash[:alert] %>');
+$.notify({
+    icon: 'pe-7s-trash',
+    message: flash.message
+
+  },{
+      type: flash.messageType,
+      timer: 500
+});

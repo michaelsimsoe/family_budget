@@ -5,7 +5,7 @@ class PeopleController < ApplicationController
 			redirect_to no_budget_path
 			return
 		end
-		@people = current_user.family_budget.people
+		@people = current_user.owner_or_member_of_budget?.people
 		@new_person_budget_notation = PersonBudgetNotation.new
 	end
 
@@ -38,7 +38,7 @@ class PeopleController < ApplicationController
 	end
 
 	def show
-		# @sub_budgets = current_user.family_budget.sub_budgets
+		# @sub_budgets = current_user.owner_or_member_of_budget?.sub_budgets
 	end
 
 	def destroy

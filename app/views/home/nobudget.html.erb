@@ -1,20 +1,41 @@
-<% if !current_user.family_budget.present? && !current_user.family_budgets.present?%>
-	<h1>You need a Budget. Either create one, or join one.</h1>
-	<%= link_to "create budget", new_family_budget_path %>
-	<% if !current_user.member_requests.present? %>
-		<h2>Request to join a friends budget</h2>
-		<ul>
-			<% @family_budgets.each do |budget| %>
-				<li><%= budget.id %> 
-					<span>
-						<%= link_to "Request membership", create_request_path(budget_id: budget.id), method: :post %>
-					</span>
-				</li>
+<div class="row">
+	<div class="col-md-12">
+		<% if !current_user.family_budget.present? && !current_user.family_budgets.present?%>
+			<h2>Welcome to <em>Family Budget</em></h2>
+			<p>You need a budget. Either create one, or send a member request to join one.</p>
+			<%= link_to "Create Budget", new_family_budget_path, class: "btn btn-primary btn-lg center-block" %>
+			<% if !current_user.member_requests.present? %>
+				<% if FamilyBudget.first.present? %>
+					<h3>Request to join a friends budget</h3>
+					<ul class="list-group">
+						<% @family_budgets.each do |budget| %>
+							<li class="list-group-item">
+								<h4 class="list-group-item-heading"><%= budget.name %></h4>
+								<p class="list-group-item-text">
+									<strong>Owned by: </strong> <%= budget.owner_of_budget %>
+								</p>
+								<span>
+									<%= link_to "Request membership", create_request_path(budget_id: budget.id), class: "btn btn-primary btn-xs", method: :post %>
+								</span>
+							</li>
+						<% end %>
+					</ul>
+				<% else %>
+					<h3>Request to join a budget.</h3>
+					<p>There does not seem to exist any Family Budgets. I guess your the first person here..</p>
+				<% end %>
+			<% else %>
+			<div class="card">
+		    <div class="header">
+		      <h4 class="title">You have a pending request</h4>
+		    </div>
+		    <div class="content">
+		    	<p><strong>Budget name:</strong> <%= current_user.member_requests.first.family_budget.name %></p>
+		    	<small><strong>Budget owner:</strong></small> <%= current_user.member_requests.first.family_budget.owner_of_budget %>
+				<%= link_to "Cancel request", delete_request_path(user_id: current_user.id), class: "btn btn-primary", method: :post %>
+				</div>
+			</div>
 			<% end %>
-		</ul>
-	<% else %>
-		<h3>You have a pending request</h3>
-		<p>It is for budget <%= current_user.member_requests.first.family_budget.name %></p>
-		<%= link_to "Cancel request", delete_request_path(user_id: current_user.id), method: :post %>
-	<% end %>
-<% end %>
+		<% end %>
+	</div>
+</div>

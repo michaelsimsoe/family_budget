@@ -5,7 +5,7 @@ class SubBudgetsController < ApplicationController
 			redirect_to no_budget_path
 			return
 		end
-		@sub_budgets = current_user.family_budget.sub_budgets
+		@sub_budgets = current_user.owner_or_member_of_budget?.sub_budgets
 		@new_sub_budget_notation = SubBudgetNotation.new
 	end
 	
@@ -38,7 +38,7 @@ class SubBudgetsController < ApplicationController
 	end
 
 	def show
-		@sub_budgets = current_user.family_budget.sub_budgets
+		@sub_budgets = current_user.owner_or_member_of_budget?.sub_budgets
 	end
 
 	def destroy

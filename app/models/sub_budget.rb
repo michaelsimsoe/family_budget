@@ -16,7 +16,7 @@ class SubBudget < ApplicationRecord
   def outgoing
   	total_out = 0
   	self.sub_budget_notations.each do |n|
-  		if n.notation_type == "withdrawal"
+  		if n.notation_type == "withdrawal" && n.amount != nil
   			total_out += n.amount
   		end 
   	end

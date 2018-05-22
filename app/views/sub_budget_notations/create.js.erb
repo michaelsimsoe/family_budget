@@ -1,3 +1,14 @@
+var flash = createFlashMessage('<%= j flash[:notice] %>', '<%= j flash[:alert] %>');
+
+$.notify({
+    icon: 'pe-7s-flag',
+    message: flash.message
+
+  },{
+      type: flash.messageType,
+      timer: 500
+});
+
 var formInputs = document.querySelectorAll('.form-control');
 var TITLE = '<%= j @sub_budget_notation.title %>';
 var DESCRIPTION = '<%= j @sub_budget_notation.description %>';
@@ -9,7 +20,44 @@ formInputs.forEach(function(el) {
 	el.value = "";
 });
 
+var currentForm = $('div.content.current > form');
+currentForm[0].reset()
+$('.current #sub_budget_notation_notation_type_deposit')[0].value = 'deposit';
+$('.current #sub_budget_notation_notation_type_withdrawal')[0].value = 'withdrawal';
+// console.log($(''));
+// $('div.content.current > #sub_budget_notation_notation_type_withdrawal')[0].value = 'withdrawal';
+// $('div.content.current > #sub_budget_notation_notation_type_deposit')[0].value = 'deposit';
 // formInputs[0].focus();
+
+
+// function createFlashMessage() {
+// 	var noticeMessage = '<%= j flash[:notice] %>';
+// 	var alertMessage = '<%= j flash[:alert] %>';
+// 	var message = '';
+// 	var messageType = '';
+	
+// 	if (noticeMessage != '') {
+// 		message = noticeMessage;
+// 		messageType = 'success'
+// 	} else if (alertMessage != '') {
+// 		message = alertMessage;
+// 		messageType = 'danger'
+// 	}
+
+// 	return {
+// 		message,
+// 		messageType
+// 	}
+// }
+
+
+
+
+
+
+if (flash.messageType == 'danger') {
+	console.log("STOPPED!")
+} else {
 
 
 var table = $(' div.content.current > table > tbody');
@@ -22,7 +70,6 @@ if (table.length < 1) {
 		          <th scope="col">Title</th>
 		          <th scope="col" class="hidden-sm hidden-xs">Description</th>
 		          <th scope="col">Amount</th>
-		          <th scope="col">Type</th>
 		          <th scope="col">Action</th>              
 		        </tr>
 		      </thead>
@@ -31,7 +78,6 @@ if (table.length < 1) {
 						  <th scope="row">${TITLE}</th>
 						  <td class="hidden-sm hidden-xs"">${DESCRIPTION}</td>
 						  <td>${AMOUNT}</td>
-						  <td>${ID}</td>
 						  <td>
 						  	<a class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal" data-remote="true" href="/sub_budget_notations/${ID}/edit">Edit</a>
 								<!-- <button type="button" class="btn btn-secondary btn-xs">Delete</button> -->
@@ -51,7 +97,6 @@ var data = `
 	  <th scope="row">${TITLE}</th>
 	  <td class="hidden-sm hidden-xs"">${DESCRIPTION}</td>
 	  <td>${AMOUNT}</td>
-	  <td>${ID}</td>
 	  <td>
 	  	<a class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal" data-remote="true" href="/sub_budget_notations/${ID}/edit">Edit</a>
 			<!-- <button type="button" class="btn btn-secondary btn-xs">Delete</button> -->
@@ -64,12 +109,6 @@ table.append(data);
 $(' div.content.current > table').prev()[0].children[1].children[1].focus()
 $(' div.content.current').removeClass('current');
 
-$.notify({
-    icon: 'pe-7s-flag',
-    message: "Notation has been created."
 
-  },{
-      type: 'success',
-      timer: 1000
-});
 
+}

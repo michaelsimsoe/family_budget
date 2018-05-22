@@ -97,31 +97,31 @@ lbd = {
 
     initRightMenu: debounce(function(){
         if(!navbar_initialized){
-            $sidebar_wrapper = $('.sidebar-wrapper');
-            $navbar = $('nav').find('.navbar-collapse').html();
+            // $sidebar_wrapper = $('.sidebar-wrapper');
+            // $navbar = $('nav').find('.navbar-collapse').html();
 
-            mobile_menu_content = '';
+            // mobile_menu_content = '';
 
-            nav_content = $navbar;
+            // nav_content = $navbar;
 
-            nav_content = '<ul class="nav nav-mobile-menu">' + nav_content + '</ul>';
+            // nav_content = '<ul class="nav nav-mobile-menu">' + nav_content + '</ul>';
 
-            // navbar_form = $('nav').find('.navbar-form').get(0).outerHTML;
+            // // navbar_form = $('nav').find('.navbar-form').get(0).outerHTML;
 
-            $sidebar_nav = $sidebar_wrapper.find(' > .nav');
+            // $sidebar_nav = $sidebar_wrapper.find(' > .nav');
 
-            // insert the navbar form before the sidebar list
-            $nav_content = $(nav_content);
-            // $navbar_form = $(navbar_form);
-            $nav_content.insertBefore($sidebar_nav);
-            // $navbar_form.insertBefore($nav_content);
+            // // insert the navbar form before the sidebar list
+            // $nav_content = $(nav_content);
+            // // $navbar_form = $(navbar_form);
+            // $nav_content.insertBefore($sidebar_nav);
+            // // $navbar_form.insertBefore($nav_content);
 
-            $(".sidebar-wrapper .dropdown .dropdown-menu > li > a").click(function(event) {
-                event.stopPropagation();
+            // $(".sidebar-wrapper .dropdown .dropdown-menu > li > a").click(function(event) {
+            //     event.stopPropagation();
 
-            });
+            // });
 
-            mobile_menu_initialized = true;
+            // mobile_menu_initialized = true;
         } else {
             if($(window).width() > 991){
                 // reset all the additions that we made for the sidebar wrapper only if the screen is bigger than 991px

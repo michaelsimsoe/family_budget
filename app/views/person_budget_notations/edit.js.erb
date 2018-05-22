@@ -1,11 +1,12 @@
 $("#myModal").find('.modal-body').html("<%= j render 'form', person_budget_notation: @person_budget_notation %>");
 $("#myModal").modal('show');
 
+var flash = createFlashMessage('<%= j flash[:notice] %>', '<%= j flash[:alert] %>');
 $.notify({
-    icon: 'pe-7s-flag',
-    message: "Notation has been updated."
+    icon: 'pe-7s-trash',
+    message: flash.message
 
   },{
-      type: 'success',
-      timer: 1000
+      type: flash.messageType,
+      timer: 500
 });

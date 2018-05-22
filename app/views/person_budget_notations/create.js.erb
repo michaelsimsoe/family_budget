@@ -22,7 +22,6 @@ if (table.length < 1) {
 		          <th scope="col">Title</th>
 		          <th scope="col" class="hidden-sm hidden-xs">Description</th>
 		          <th scope="col">Amount</th>
-		          <th scope="col">Type</th>
 		          <th scope="col">Action</th>              
 		        </tr>
 		      </thead>
@@ -31,7 +30,6 @@ if (table.length < 1) {
 						  <th scope="row">${TITLE}</th>
 						  <td class="hidden-sm hidden-xs"">${DESCRIPTION}</td>
 						  <td>${AMOUNT}</td>
-						  <td>${ID}</td>
 						  <td>
 						  	<a class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal" data-remote="true" href="/sub_budget_notations/${ID}/edit">Edit</a>
 								<!-- <button type="button" class="btn btn-secondary btn-xs">Delete</button> -->
@@ -51,7 +49,6 @@ var data = `
 	  <th scope="row">${TITLE}</th>
 	  <td class="hidden-sm hidden-xs"">${DESCRIPTION}</td>
 	  <td>${AMOUNT}</td>
-	  <td>${ID}</td>
 	  <td>
 	  	<a class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal" data-remote="true" href="/sub_budget_notations/${ID}/edit">Edit</a>
 			<!-- <button type="button" class="btn btn-secondary btn-xs">Delete</button> -->
@@ -64,11 +61,12 @@ table.append(data);
 $(' div.content.current > table').prev()[0].children[1].children[1].focus()
 $(' div.content.current').removeClass('current');
 
+var flash = createFlashMessage('<%= j flash[:notice] %>', '<%= j flash[:alert] %>');
 $.notify({
     icon: 'pe-7s-flag',
-    message: "Notation has been created."
+    message: flash.message
 
   },{
-      type: 'success',
+      type: flash.messageType,
       timer: 1000
 });

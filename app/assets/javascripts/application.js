@@ -21,7 +21,7 @@
 //= require bootstrap-notify
 //= require bootstrap-select
 //= require light-bootstrap-dashboard
-//= require demo.js
 //= require sub_budget_notations
-//
+// = require home
+// = require helpers
 

@@ -1,40 +1,80 @@
-<div class="card card-info">
-  <div class="header">
-    <h4 class="title">Information</h4>
-  </div>
-  <div class="content info-content">
-  	<div class="people">
-  		<div class="list-group">
-  		<% if !@people.present?%>
-  			<h5>No People in this Budget.</h5>
-			<% else %>
-				<h5>People in this Budget</h5>
-  			<div class="list-group person">
-				<% @people.each do |person| %>    
-				  <a href="#" class="list-group-item">
-				    <h4 class="list-group-item-heading"><%= person.name %></h4>
-				    <p class="list-group-item-text">Disposable: <%= person.disposable_amount %></p>
-				    <p class="list-group-item-text">Out: <%= person.total_out %></p>
-				    <p class="list-group-item-text">Rest: <%= person.rest %></p>
-				  </a>
-		  	<% end %>
-		  	</div>
-			<% end %>
-  	</div>
+<div class="col-md-4">
+	<div class="card card-info">
+	  <div class="header">
+	    <h4 class="title">Information</h4>
 	  </div>
-	  <div class="stats">
-	  	<h5>Stats</h5>
-	  	<div class="list-group">
+	  <div class="content info-content">
+	  	<div class="people">
+	  		<div class="list-group">
+	  		<% if !@people.present?%>
+	  			<h5>No People in this Budget.</h5>
+				<% else %>
+					<h5>People in this Budget</h5>
+	  			<div class="list-group person">
+					<% @people.each do |person| %>    
+					  <a href="#" class="list-group-item">
+					    <h4 class="list-group-item-heading"><%= person.name %></h4>
+					    <p class="list-group-item-text"><strong>Disposable: </strong><%= person.disposable_amount %></p>
+					    <p class="list-group-item-text"><strong>Out: </strong><%= person.total_out %></p>
+					    <p class="list-group-item-text"><strong>Rest: </strong><%= person.rest %></p>
+					  </a>
+			  	<% end %>
+			  	</div>
+				<% end %>
+	  	</div>
+		  </div>
+		</div>
+	</div>
+</div>
+
+<div class="col-md-4">
+	<div class="card">
+		<div class="header">
+		    <h4 class="title">Outgoing from Family Budget</h4>
+		    <p class="category">Combined from all Sub Budgets</p>
+		</div>
+		<div class="content">
+		    <div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>
+
+		    <div class="footer">
+		        <div class="legend">
+		            
+		        </div>
+		        <hr>
+		        <div class="stats">
+		            <i class="fa fa-clock-o"></i> Updates on refresh
+		        </div>
+		    </div>
+		</div>
+	</div>
+
+	<script>
+		var allNotations = '<%= current_user.owner_or_member_of_budget?.getAllNotations %>';
+		// console.log(JSON.parse(allNotations));
+		chart.makePieChart(JSON.parse(allNotations))
+	</script>
+</div>
+
+ <div class="col-md-4">
+ 	<div class="card">
+		<div class="header">
+		    <h4 class="title">Stats</h4>
+		    <p class="category">Last Campaign Performance</p>
+		</div>
+		<div class="content">
+			<div class="list-group">
 				<li class="list-group-item">
-					Total in to budget: <%= current_user.family_budget.total_in_to_budget %>
+					<strong>Total in to budget: </strong><%= current_user.owner_or_member_of_budget?.total_in_to_budget %>
 					</li>
-  			<li class="list-group-item">
-  				Total out from budget: <%= current_user.family_budget.total_out_from_budget %>
-  			</li>
-  			<li class="list-group-item">
-  				Balance: <%= current_user.family_budget.balance %>
-  			</li>
+				<li class="list-group-item">
+					<strong>Total out from budget: </strong><%= current_user.owner_or_member_of_budget?.total_out_from_budget %>
+				</li>
+				<li class="list-group-item">
+					<strong>Balance: </strong><%= current_user.owner_or_member_of_budget?.balance %>
+				</li>
+				<%#= current_user.family_budget.getAllNotations %>
 			</div>
 		</div>
 	</div>
 </div>
+	
