@@ -1,0 +1,15 @@
+var flash = createFlashMessage('<%= j flash[:notice] %>', '<%= j flash[:alert] %>');
+$.notify({
+    icon: 'pe-7s-trash',
+    message: flash.message
+
+  },{
+      type: flash.messageType,
+      timer: 500
+});
+
+var ID = '<%= j @user_budget.user_id.to_json %>';
+var current = $("div.list-group").find(`li[data-id=${ID}]`);
+
+current[0].remove();
+console.log('I ran!')

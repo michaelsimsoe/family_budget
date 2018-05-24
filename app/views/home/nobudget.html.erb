@@ -3,7 +3,7 @@
 		<% if !current_user.family_budget.present? && !current_user.family_budgets.present?%>
 			<h2>Welcome to <em>Family Budget</em></h2>
 			<p>You need a budget. Either create one, or send a member request to join one.</p>
-			<%= link_to "Create Budget", new_family_budget_path, class: "btn btn-primary btn-lg center-block" %>
+			<%= link_to "Create Budget", new_family_budget_path, class: "btn btn-primary btn-lg center-block", method: :get %>
 			<% if !current_user.member_requests.present? %>
 				<% if FamilyBudget.first.present? %>
 					<h3>Request to join a friends budget</h3>

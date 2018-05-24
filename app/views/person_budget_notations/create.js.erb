@@ -1,3 +1,14 @@
+var flash = createFlashMessage('<%= j flash[:notice] %>', '<%= j flash[:alert] %>');
+
+$.notify({
+    icon: 'pe-7s-flag',
+    message: flash.message
+
+  },{
+      type: flash.messageType,
+      timer: 500
+});
+
 var formInputs = document.querySelectorAll('.form-control');
 var TITLE = '<%= j @person_budget_notation.title %>';
 var DESCRIPTION = '<%= j @person_budget_notation.description %>';
@@ -5,12 +16,15 @@ var AMOUNT = '<%= j @person_budget_notation.amount.to_json %>';
 var NOTATION_TYPE = '<%= j @person_budget_notation.notation_type %>';
 var ID = '<%= j @person_budget_notation.id.to_json %>';
 var fullData;
-formInputs.forEach(function(el) {
-	el.value = "";
-});
 
-// formInputs[0].focus();
+var currentForm = $('div.content.current > form');
+currentForm[0].reset()
+// $('.current #sub_budget_notation_notation_type_deposit')[0].value = 'deposit';
+// $('.current #sub_budget_notation_notation_type_withdrawal')[0].value = 'withdrawal';
 
+if (flash.messageType == 'danger') {
+	console.log("STOPPED!")
+} else {
 
 var table = $(' div.content.current > table > tbody');
 var content = $('');
@@ -61,12 +75,4 @@ table.append(data);
 $(' div.content.current > table').prev()[0].children[1].children[1].focus()
 $(' div.content.current').removeClass('current');
 
-var flash = createFlashMessage('<%= j flash[:notice] %>', '<%= j flash[:alert] %>');
-$.notify({
-    icon: 'pe-7s-flag',
-    message: flash.message
-
-  },{
-      type: flash.messageType,
-      timer: 1000
-});
+}

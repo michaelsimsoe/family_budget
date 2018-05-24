@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-
+	skip_before_action :user_has_budget?, only: :nobudget
 	def index
 		@family_budgets = FamilyBudget.all
 		if !current_user.family_budget.present? && !current_user.family_budgets.present?

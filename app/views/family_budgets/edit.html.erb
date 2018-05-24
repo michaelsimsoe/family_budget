@@ -1,3 +1,17 @@
 <h1>Edit</h1>
+<h3>Members of this Family Budget</h3>
+<div class="list-group person">
+<% @members.each do |member| %>    
+  <li data-id="<%= member.id %>" class="list-group-item">
+    <p class="list-group-item-text">
+    	<strong>Name:</strong> <%= member.full_name ? member.full_name : member.email %>
+			<%= link_to "Delete member", user_budget_path(id: member.id), class: "btn btn-danger btn-sm delete-member", remote: true, method: :delete %>
+		</p>
+  </li>
 
+<% end %>
+</div>
 <%= render 'form' %>
+<% if current_user.family_budget.present? %>
+	<%= link_to "Delete Family Budget", family_budget_path(id: current_user.family_budget.id), class: "btn btn-danger btn-lg btn-block",  method: :delete %>
+<% end %>

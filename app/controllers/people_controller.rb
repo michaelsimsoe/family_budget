@@ -1,10 +1,5 @@
 class PeopleController < ApplicationController
 	def index
-		@family_budgets = FamilyBudget.all
-		if !current_user.family_budget.present? && !current_user.family_budgets.present?
-			redirect_to no_budget_path
-			return
-		end
 		@people = current_user.owner_or_member_of_budget?.people
 		@new_person_budget_notation = PersonBudgetNotation.new
 	end
@@ -15,7 +10,6 @@ class PeopleController < ApplicationController
 
 	def create
 		@budget = current_user.owner_or_member_of_budget?
-		amount = params[:disposable_amount]
 		@person = Person.new(person_params)
 		@person.family_budget_id = @budget.id
 		if @person.save
@@ -50,6 +44,6 @@ class PeopleController < ApplicationController
 	private
 
 	def person_params
-    params.require(:person).permit(:name, :description, :disposable_amount)
+    params.require(:person).permit(:name, :description)
   end
 end

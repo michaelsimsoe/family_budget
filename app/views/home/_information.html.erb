@@ -2,6 +2,7 @@
 	<div class="card card-info">
 	  <div class="header">
 	    <h4 class="title">Information</h4>
+	    <%= link_to "Edit Family Budget", edit_family_budget_path(id: current_user.owner_or_member_of_budget?.id ), class: "btn btn-default btn-xs", method: :get %>
 	  </div>
 	  <div class="content info-content">
 	  	<div class="people">
@@ -14,7 +15,7 @@
 					<% @people.each do |person| %>    
 					  <a href="#" class="list-group-item">
 					    <h4 class="list-group-item-heading"><%= person.name %></h4>
-					    <p class="list-group-item-text"><strong>Disposable: </strong><%= person.disposable_amount %></p>
+					    <p class="list-group-item-text"><strong>Funds:</strong><%= person.total_in %></p>
 					    <p class="list-group-item-text"><strong>Out: </strong><%= person.total_out %></p>
 					    <p class="list-group-item-text"><strong>Rest: </strong><%= person.rest %></p>
 					  </a>

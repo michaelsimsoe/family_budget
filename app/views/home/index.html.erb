@@ -1,3 +1,10 @@
+                  <div class="page-header">
+
+                    <h1><%= current_user.owner_or_member_of_budget?.name %></h1>
+                    <p><%= current_user.owner_or_member_of_budget?.description %></p>
+                    
+                  </div>
+
                   <div class="row">
                   	
                   	<%= render "home/search" %>

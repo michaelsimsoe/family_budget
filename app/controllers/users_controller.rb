@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-
+  skip_before_action :user_has_budget?
 	def search
     if params[:search_param].blank?
       flash[:alert] = "You have entered an empty search string"

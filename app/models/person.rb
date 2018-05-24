@@ -26,7 +26,7 @@ class Person < ApplicationRecord
 
   def rest
   	out = self.total_out
-  	disposable = self.disposable_amount
+  	disposable = self.total_in
     if disposable != nil
   	rest =  disposable - out
       return rest

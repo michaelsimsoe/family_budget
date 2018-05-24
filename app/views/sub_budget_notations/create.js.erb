@@ -16,43 +16,11 @@ var AMOUNT = '<%= j @sub_budget_notation.amount.to_json %>';
 var NOTATION_TYPE = '<%= j @sub_budget_notation.notation_type %>';
 var ID = '<%= j @sub_budget_notation.id.to_json %>';
 var fullData;
-formInputs.forEach(function(el) {
-	el.value = "";
-});
 
 var currentForm = $('div.content.current > form');
 currentForm[0].reset()
-$('.current #sub_budget_notation_notation_type_deposit')[0].value = 'deposit';
-$('.current #sub_budget_notation_notation_type_withdrawal')[0].value = 'withdrawal';
-// console.log($(''));
-// $('div.content.current > #sub_budget_notation_notation_type_withdrawal')[0].value = 'withdrawal';
-// $('div.content.current > #sub_budget_notation_notation_type_deposit')[0].value = 'deposit';
-// formInputs[0].focus();
-
-
-// function createFlashMessage() {
-// 	var noticeMessage = '<%= j flash[:notice] %>';
-// 	var alertMessage = '<%= j flash[:alert] %>';
-// 	var message = '';
-// 	var messageType = '';
-	
-// 	if (noticeMessage != '') {
-// 		message = noticeMessage;
-// 		messageType = 'success'
-// 	} else if (alertMessage != '') {
-// 		message = alertMessage;
-// 		messageType = 'danger'
-// 	}
-
-// 	return {
-// 		message,
-// 		messageType
-// 	}
-// }
-
-
-
-
+// $('.current #sub_budget_notation_notation_type_deposit')[0].value = 'deposit';
+// $('.current #sub_budget_notation_notation_type_withdrawal')[0].value = 'withdrawal';
 
 
 if (flash.messageType == 'danger') {

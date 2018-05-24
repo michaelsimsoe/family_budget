@@ -6,18 +6,28 @@ class PersonBudgetNotationsController < ApplicationController
 
 	def new
 		@person_budget_notation = PersonBudgetNotation.new
+		@family_budget = current_user.owner_or_member_of_budget?
 	end
 
 	def create
-		# @sub_budget_id = params[:sub_budget_id]
+
 		@person_budget_notation = PersonBudgetNotation.new(person_budget_notation_params)
-		# @sub_budget_notation.sub_budget_id = @sub_budget_id
-		puts "create"
+
+		if person_budget_notation_params["sub_budget_id"].present?
+			sub_budget = SubBudget.where("title like ?", person_budget_notation_params["sub_budget_id"])
+			sub_budget_id = sub_budget.first.id
+			@person_budget_notation.sub_budget_id = sub_budget_id
+		end
+
+		puts "22"
 		if @person_budget_notation.save
 			respond_to do |format|
       	format.json { render :json => @person_budget_notation }
       	format.js
    		end
+   		flash[:notice] = "Notation has been created!"
+   	else
+   		flash[:alert] = "Notation was not created!"
 		end
 	end
 
@@ -54,6 +64,6 @@ class PersonBudgetNotationsController < ApplicationController
 	private
 
 	def person_budget_notation_params
-    params.require(:person_budget_notation).permit(:title, :description, :amount, :notation_type, :person_id)
+    params.require(:person_budget_notation).permit(:title, :description, :amount, :notation_type, :person_id, :sub_budget_id)
   end
 end

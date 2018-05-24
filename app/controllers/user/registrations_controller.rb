@@ -1,5 +1,6 @@
 class User::RegistrationsController < Devise::RegistrationsController
   before_action :configure_permitted_parameters
+  skip_before_action :user_has_budget?
   
   protected
   

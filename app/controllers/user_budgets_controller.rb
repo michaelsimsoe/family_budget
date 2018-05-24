@@ -6,8 +6,17 @@ class UserBudgetsController < ApplicationController
 	end
 
 	def destroy
-		@user_budget = User.find(params[:user_id]).user_budgets.first
-		UserBudget.destroy(@user_budget.id)
-		redirect_to root_path
+		@user_budget = User.find(params[:id]).user_budgets.first
+		# UserBudget.destroy(@user_budget.id)
+		if @user_budget.destroy
+			respond_to do |format|
+      	format.json { render :json => @user_budget }
+      	format.js
+   		end
+   		flash[:alert] = "User removed"
+   	else
+   		flash[:alert] = "User could NOT be removed!"
+   	end
+
 	end
 end

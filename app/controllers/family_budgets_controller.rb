@@ -1,4 +1,5 @@
 class FamilyBudgetsController < ApplicationController
+	skip_before_action :user_has_budget?, only: [:new, :create]
 	def new
 		@family_budget = current_user.owner_or_member_of_budget?
 		if @family_budget != nil
@@ -18,11 +19,12 @@ class FamilyBudgetsController < ApplicationController
 	end
 
 	def edit
-		@family_budget = current_user.owner_or_member_of_budget?
+		@family_budget = FamilyBudget.find(params[:id])
+		@members = @family_budget.users
 	end
 
 	def update
-		@family_budget = current_user.owner_or_member_of_budget?
+		@family_budget = FamilyBudget.find(params[:id])
 		if @family_budget.update(budget_params)
 			redirect_to root_path
 		else
@@ -39,6 +41,12 @@ class FamilyBudgetsController < ApplicationController
 			return
 		end
 		
+	end
+
+	def destroy
+		@family_budget = FamilyBudget.find(params[:id])
+		@family_budget.destroy
+		redirect_to root_path
 	end
 
 	private

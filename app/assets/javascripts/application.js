@@ -22,6 +22,7 @@
 //= require bootstrap-select
 //= require light-bootstrap-dashboard
 //= require sub_budget_notations
+//= require person_budget_notations
 // = require home
 // = require helpers
 
