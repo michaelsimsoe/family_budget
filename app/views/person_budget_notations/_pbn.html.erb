@@ -1,6 +1,6 @@
 <% p.person_budget_notations.each do |pbn| %>
 	<tr data-id="<%= pbn.id %>" class="type-<%= pbn.notation_type %>">
-	  <th scope="row"><%= pbn.title %></th>
+	  <td><%= pbn.title %></th>
 	  <td class="hidden-sm hidden-xs""><%= pbn.description %></td>
 	  <td><%= pbn.amount %></td>
 	  <td>

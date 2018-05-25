@@ -1,6 +1,4 @@
 class InvitationsController < ApplicationController
-	# before_action :set_member_request, except: [:index, :create]
-	# skip_before_action :user_has_budget?
 	skip_before_action :user_has_budget?
 	def index
 		@incoming = Invitation.where(member: current_user)

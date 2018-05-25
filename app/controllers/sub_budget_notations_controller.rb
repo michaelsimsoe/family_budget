@@ -21,7 +21,17 @@ class SubBudgetNotationsController < ApplicationController
    		end
    		flash[:notice] = "Notation has been created!"
    	else
-   		flash[:alert] = "Notation was not created!"
+   		alertMessage = "Notation was not created! "
+   		if @sub_budget_notation.errors.messages
+   			if @sub_budget_notation.errors.messages[:notation_type].present?
+   				alertMessage += "You need to specify if it is inn or out. "
+   			end
+   			if @sub_budget_notation.errors.messages[:amount].present?
+   				alertMessage += "You need to specify an amount."
+   			end
+   			puts @sub_budget_notation.errors.messages
+   		end
+   		flash[:alert] = alertMessage
 		end
 	end
 
@@ -43,12 +53,14 @@ class SubBudgetNotationsController < ApplicationController
 
 	def destroy
 		@sub_budget_notation = SubBudgetNotation.find(params[:id])
+
 		if @sub_budget_notation.destroy
 		 respond_to do |format|
       	format.json { render :json => @sub_budget_notation }
       	format.js
    		end
    		flash[:alert] = "Notation was deleted!"
+   		puts "DESSSSSSTROOOOOOOYYYYYYYY!"
    	else
    		flash[:alert] = "Notation could NOT be deleted!"
    	end

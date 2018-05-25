@@ -9,6 +9,9 @@
   </div>
 <% else %>
     <% @sub_budgets.each do |sb| %>
+    <% if controller_name != "sub_budgets" %>
+      <small>To add more sub budget, go to <%= link_to "sub budget home", sub_budgets_path, method: :get %>.</small>
+    <% end %>
   <div class="card ">
       <div class="header">
           <h4 class="title"><%= sb.title %></h4>

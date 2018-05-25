@@ -31,10 +31,17 @@ class PersonBudgetNotationsController < ApplicationController
    		end
    		flash[:notice] = "Notation has been created!"
    	else
+   		alertMessage = "Notation was not created! "
    		if @person_budget_notation.errors.messages
-   			puts @person_budget_notation.errors.messages[:notation_type][0]
+   			if @person_budget_notation.errors.messages[:notation_type].present?
+   				alertMessage += "You need to specify if it is inn or out. "
+   			end
+   			if @person_budget_notation.errors.messages[:amount].present?
+   				alertMessage += "You need to specify an amount."
+   			end
+   			puts @person_budget_notation.errors.messages
    		end
-   		flash[:alert] = "Notation was not created!"
+   		flash[:alert] = alertMessage
 		end
 
 		# Create SubBudgetNotation..

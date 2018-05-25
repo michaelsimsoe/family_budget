@@ -40,8 +40,8 @@ if (table.length < 1) {
 		        </tr>
 		      </thead>
 		      <tbody>
-		      	<tr data-id="${ID}">
-						  <th scope="row">${TITLE}</th>
+		      	<tr data-id="${ID}" class="type-${NOTATION_TYPE}">
+						  <td>${TITLE}</th>
 						  <td class="hidden-sm hidden-xs"">${DESCRIPTION}</td>
 						  <td>${AMOUNT}</td>
 						  <td>
@@ -59,8 +59,8 @@ if (table.length < 1) {
 	// FJERNE NO NOTATION!!
 }
 var data = `
-	<tr data-id="${ID}">
-	  <th scope="row">${TITLE}</th>
+	<tr data-id="${ID}" class="type-${NOTATION_TYPE}">
+	  <td>${TITLE}</th>
 	  <td class="hidden-sm hidden-xs"">${DESCRIPTION}</td>
 	  <td>${AMOUNT}</td>
 	  <td>

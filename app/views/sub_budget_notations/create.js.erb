@@ -8,6 +8,7 @@ $.notify({
       type: flash.messageType,
       timer: 500
 });
+flash.messageType = '';
 
 var formInputs = document.querySelectorAll('.form-control');
 var TITLE = '<%= j @sub_budget_notation.title %>';
@@ -24,9 +25,12 @@ currentForm[0].reset()
 
 
 if (flash.messageType == 'danger') {
-	console.log("STOPPED!")
+	console.log("stop");
+	// currentForm[0].children
+	flash.messageType == 'danger'
+	$(' div.content.current').removeClass('current');
 } else {
-
+// console.log(+currentForm[0].children[1].children[5].value < 1);
 
 var table = $(' div.content.current > table > tbody');
 var content = $('');
@@ -42,8 +46,8 @@ if (table.length < 1) {
 		        </tr>
 		      </thead>
 		      <tbody>
-		      	<tr data-id="${ID}">
-						  <th scope="row">${TITLE}</th>
+		      	<tr data-id="${ID}" class="type-${NOTATION_TYPE}">
+						  <td>${TITLE}</th>
 						  <td class="hidden-sm hidden-xs"">${DESCRIPTION}</td>
 						  <td>${AMOUNT}</td>
 						  <td>
@@ -61,8 +65,8 @@ if (table.length < 1) {
 	// FJERNE NO NOTATION!!
 }
 var data = `
-	<tr data-id="${ID}">
-	  <th scope="row">${TITLE}</th>
+	<tr data-id="${ID}" class="type-${NOTATION_TYPE}">
+	  <td>${TITLE}</th>
 	  <td class="hidden-sm hidden-xs"">${DESCRIPTION}</td>
 	  <td>${AMOUNT}</td>
 	  <td>
@@ -76,6 +80,7 @@ var data = `
 table.append(data);
 $(' div.content.current > table').prev()[0].children[1].children[1].focus()
 $(' div.content.current').removeClass('current');
+
 
 
 
