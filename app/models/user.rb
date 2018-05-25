@@ -7,6 +7,8 @@ class User < ApplicationRecord
   has_many :user_budgets
   has_many :family_budgets, through: :user_budgets
   has_many :member_requests, dependent: :destroy
+  # has_many :invitations, dependent: :destroy
+  has_many :pending_invitations, through: :invitations, source: :family_budget
 
   def full_name
     return "#{first_name} #{last_name}".strip if (first_name || last_name)
@@ -56,5 +58,15 @@ class User < ApplicationRecord
   
   def self.matches(field_name, param)
     where("#{field_name} like ?", "%#{param}%")
+  end
+
+  def has_invitation?
+    invitation = Invitation.find_by user_id: self.id
+    true unless invitation == nil
+  end
+
+  def invitation
+    invitation = Invitation.find_by user_id: self.id
+    invitation
   end
 end

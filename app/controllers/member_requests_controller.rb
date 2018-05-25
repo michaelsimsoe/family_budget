@@ -1,5 +1,6 @@
 class MemberRequestsController < ApplicationController
 	# before_action :set_member_request, except: [:index, :create]
+	skip_before_action :user_has_budget?
 	def index
 		@incoming = MemberRequest.where(member: current_user)
  		@outgoing = current_user.owner_or_member_of_budget?.member_requests

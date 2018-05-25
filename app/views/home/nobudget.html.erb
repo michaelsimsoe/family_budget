@@ -36,6 +36,18 @@
 				</div>
 			</div>
 			<% end %>
+			<% if current_user.has_invitation? %>
+				<div class="card">
+			    <div class="header">
+			      <h4 class="title">You have an invitation to a budget!</h4>
+			    </div>
+			    <div class="content">
+			    	<p><strong>Budget name:</strong> <%= current_user.invitation.family_budget.name %></p>
+			    	<small><strong>Budget owner:</strong></small> <%= current_user.invitation.family_budget.owner_of_budget %>
+					<%= link_to "Join", update_invitation_path(budget_id: current_user.invitation.family_budget.id), class: "btn btn-primary", method: :post %>
+					</div>
+				</div>
+			<% end %>
 		<% end %>
 	</div>
 </div>

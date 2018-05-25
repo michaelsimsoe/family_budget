@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   get 'members/index'
   get 'members/destroy'
+  get 'invitations/index'
+  get 'invitations/destroy'
+
   resources :member_requests
   resources :people
   resources :person_budget_notations
@@ -16,7 +19,11 @@ Rails.application.routes.draw do
   get 'search_user', to: 'users#search'
   get 'no_budget', to: 'home#nobudget'
   post 'add_user', to: "users#add_user"
+  # post 'invite_user', to: "users#invite_user"
   post 'create_request', to: 'member_requests#create'
   post 'update_request', to: 'member_requests#update'
   post 'delete_request', to: 'member_requests#destroy'
+  post 'create_invitation', to: 'invitations#create'
+  post 'update_invitation', to: 'invitations#update'
+  post 'delete_invitation', to: 'invitations#destroy'
 end

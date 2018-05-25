@@ -7,9 +7,11 @@
               <strong>Email:</strong> <%= user.email %>
               <% if !user.family_budgets.present? %>
                   <% if current_user.family_budget.present? %>
-                    <%= link_to "Add", add_user_path(user: user, family_budget: current_user.family_budget.id), class: "btn btn-primary btn-xs", method: :post %>
+                    <%#= link_to "Add", add_user_path(user: user, family_budget: current_user.family_budget.id), class: "btn btn-primary btn-xs", method: :post %>
+                    <%= link_to "Invite", create_invitation_path(user_id: user.id), class: "btn btn-primary btn-xs", method: :post %>
                   <% elsif current_user.family_budgets.present? %>
-                    <%= link_to "Add", add_user_path(user: user, family_budget: @family_budget), class: "btn btn-primary btn-xs", method: :post %>
+                    <%#= link_to "Add", add_user_path(user: user, family_budget: @family_budget), class: "btn btn-primary btn-xs", method: :post %>
+                    <%= link_to "Invite", create_invitation_path(user_id: user.id), class: "btn btn-primary btn-xs", method: :post %>
                   <% end %>
               <% else %>
                 User already added

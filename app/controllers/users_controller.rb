@@ -26,4 +26,17 @@ class UsersController < ApplicationController
     end  
     redirect_to root_path
   end
+
+  # def invite_user
+  #   @budget = current_user.owner_or_member_of_budget?
+  #   @user = User.find(params[:user])
+  #   @user_budget = UserBudget.create(family_budget: @budget, user: @user)
+    
+  #   if @user_budget.save
+  #     puts "User was successfully added"
+  #   else
+  #     puts "There was something wrong with the request"
+  #   end  
+  #   redirect_to root_path
+  # end
 end
