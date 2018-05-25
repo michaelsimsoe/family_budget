@@ -1,6 +1,7 @@
 class SubBudget < ApplicationRecord
   belongs_to :family_budget
   has_many :sub_budget_notations, dependent: :destroy
+  has_many :person_budget_notations, dependent: :destroy
 
   def incomming
   	total_in = 0

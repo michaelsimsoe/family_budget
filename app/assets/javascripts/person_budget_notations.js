@@ -1,9 +1,12 @@
 $(document).ready(function() {
+	var selectGroup = "";
 	$('input#withdrawal').on('change', function() {
-		$('#select-group').removeClass('hidden');
+		selectGroup = $(this)[0].parentNode.nextElementSibling;
+		selectGroup.classList.remove('hidden');
 	})
 	$('input#deposit').on('change', function() {
-		$('#select-group').addClass('hidden');
+		selectGroup = $(this)[0].parentNode.nextElementSibling;
+		selectGroup.classList.add('hidden');
 	})
 	$('.new-btn').on('click', function() {
 		this.parentNode.parentNode.parentNode.classList.add('current');
