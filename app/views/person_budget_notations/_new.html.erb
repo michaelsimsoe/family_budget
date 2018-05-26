@@ -12,12 +12,12 @@
 
 			<%= f.radio_button :notation_type, "deposit", class: "form-control radio-inline", id: "deposit" %>
 			<%= f.label :notation_type, "Inn" %>
-			<%= f.radio_button :notation_type, "withdrawal", class: "form-control radio-inline", id: "withdrawal" %>
+			<%= f.radio_button :notation_type, "withdrawal", checked: true, class: "form-control radio-inline", id: "withdrawal" %>
 			<%= f.label :notation_type, "Out" %>
 		</div>
 
 		<div class="form-group hidden" id="select-group">
-			<%= f.select( :sub_budget_id, options_for_select(budget.sub_budgets.map {|sb| sb.title }), prompt: "Going to a sub budget?" ) %>
+			<%= f.select( :sub_budget_id, options_for_select(budget.sub_budgets.map {|sb| sb.title }), prompt: "Transfer to a sub budget?" ) %>
 		</div>
 		
 		<div class="form-group">
