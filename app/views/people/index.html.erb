@@ -19,8 +19,10 @@
           <p><strong>Rest:</strong> <%= person.rest %></p>
       		<%= link_to "Delete", person_path(id: person.id), class: "btn btn-danger btn-sm", method: :delete %>
           <%= link_to "Edit", edit_person_path(id: person.id), class: "btn btn-default btn-sm", method: :get %>
+
     		</div>
     		<div class="content">
+          <small id="pbn-info-message">Outgoing notations can be linked to existing Sub Budgets.</small>
      			<%= render "person_budget_notations/new",  p: person, budget: current_user.owner_or_member_of_budget? %>
      			<table class="table table-striped table-condensed">
               <thead>

@@ -3,22 +3,25 @@
 	  <div class="header">
 	    <h4 class="title">Information</h4>
 	    <%= link_to "Edit Family Budget", edit_family_budget_path(id: current_user.owner_or_member_of_budget?.id ), class: "btn btn-default btn-xs", method: :get %>
+	    <%= link_to "People Overview", people_path, class: "btn btn-default btn-xs", method: :get %>
 	  </div>
 	  <div class="content info-content">
 	  	<div class="people">
 	  		<div class="list-group">
 	  		<% if !@people.present?%>
-	  			<h5>No People in this Budget.</h5>
+	  			<h5>There is currently not adden any <strong>People</strong> to this Budget.</h5>
+	  			<p>When you have added People to the Family Budget you can link <em>outgoing Budget Notations</em> from them to <em>incomming Budget Notations</em> on a <strong>Sub Budget</strong>.</p>
+	  			<%= link_to "Add People", new_person_path, class: "btn btn-primary", method: :get %>
 				<% else %>
 					<h5>People in this Budget</h5>
 	  			<div class="list-group person">
 					<% @people.each do |person| %>    
-					  <a href="#" class="list-group-item">
+					  <li href="#" class="list-group-item">
 					    <h4 class="list-group-item-heading"><%= person.name %></h4>
 					    <p class="list-group-item-text"><strong>Funds:</strong><%= person.total_in %></p>
 					    <p class="list-group-item-text"><strong>Out: </strong><%= person.total_out %></p>
 					    <p class="list-group-item-text"><strong>Rest: </strong><%= person.rest %></p>
-					  </a>
+					  </li>
 			  	<% end %>
 			  	</div>
 				<% end %>

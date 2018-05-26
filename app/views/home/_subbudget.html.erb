@@ -10,7 +10,7 @@
 <% else %>
     <% @sub_budgets.each do |sb| %>
     <% if controller_name != "sub_budgets" %>
-      <small>To add more sub budget, go to <%= link_to "sub budget home", sub_budgets_path, method: :get %>.</small>
+      <small>To add more sub budgets, go to <%= link_to "sub budget home", sub_budgets_path, method: :get %>.</small>
     <% end %>
   <div class="card ">
       <div class="header">
@@ -23,6 +23,7 @@
           <%= link_to "Edit", edit_sub_budget_path(id: sb.id), class: "btn btn-default btn-sm", method: :get %>
       </div>
       <div class="content">
+        <small id="pbn-info-message">Incomming notations from a person can be linked to <%= link_to "this perosn", people_path, method: :get %>.</small>
               <% if !sb.sub_budget_notations.first.present? %>
                 <p class="mb-5">No Notations.</p>
                 <%= render "sub_budget_notations/new", sb: sb %>

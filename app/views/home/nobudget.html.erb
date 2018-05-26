@@ -2,7 +2,24 @@
 	<div class="col-md-12">
 		<% if !current_user.family_budget.present? && !current_user.family_budgets.present?%>
 			<h2>Welcome to <em>Family Budget</em></h2>
-			<p>You need a budget. Either create one, or send a member request to join one.</p>
+			<p>Family Budget is a static overview of your familys budget. Displaying your income and expenses over a periode of your choice.</p>
+			<div class="panel panel-default">
+			  <div class="panel-body">
+			    Create a <strong>Family Budget</strong>. You could look at this as a container for your budget.
+			  </div>
+			</div>
+			<div class="panel panel-default">
+			  <div class="panel-body">
+			    Create resonable <strong>Sub Budgets</strong>. This could be groceries, utilities, car-budget and so on.
+			  </div>
+			</div>
+			<div class="panel panel-default">
+			  <div class="panel-body">
+			    Create the <strong>People</strong> involved in your Family Budget.
+			  </div>
+			</div>
+
+			<p>So now you need a budget. Either create one, send a member request to join one, or wait for an invitation.</p>
 			<%= link_to "Create Budget", new_family_budget_path, class: "btn btn-primary btn-lg center-block", method: :get %>
 			<% if !current_user.member_requests.present? %>
 				<% if FamilyBudget.first.present? %>
