@@ -49,4 +49,21 @@ class FamilyBudget < ApplicationRecord
     return notations_json.html_safe
   end
 
+  def hasOutgoingNotations?
+    count = 0
+    self.sub_budgets.each do |sb|
+      sb.sub_budget_notations.each do |sbn|
+        if sbn.notation_type == "withdrawal"
+          count += 1
+        end
+      end
+    end
+    if count > 0
+      return true
+    end
+
+    false
+  end
+
+
 end

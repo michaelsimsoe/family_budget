@@ -1,17 +1,17 @@
 <h1>People</h1>
 <%= link_to "New Person", new_person_path, class: "btn btn-success btn-lg btn-block", method: :get %>
 <% if @people.empty? %>
-  <div class="card">
+  <div class="card ppl-card">
     <div class="header">
       <h4 class="title">No People</h4>
     </div>
     <div class="content">
-     
+     <p>Add som <strong>People</strong> to the budget</p>
     </div>
   </div>
 	<% else %>
 		<% @people.each do |person| %>
-			<div class="card">
+			<div class="card ppl-card">
     		<div class="header">
       		<h4 class="title"><%= person.name %></h4>
           <p><strong>Funds:</strong> <%= person.total_in %></p>

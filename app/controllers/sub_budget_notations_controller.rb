@@ -46,8 +46,19 @@ class SubBudgetNotationsController < ApplicationController
       	format.json { render :json => @sub_budget_notation }
       	format.js
    		end
+   		flash[:notice] = "Notation has been edited!"
 		else
-
+			alertMessage = "Notation was not created! "
+   		if @sub_budget_notation.errors.messages
+   			if @sub_budget_notation.errors.messages[:notation_type].present?
+   				alertMessage += "You need to specify if it is inn or out. "
+   			end
+   			if @sub_budget_notation.errors.messages[:amount].present?
+   				alertMessage += "You need to specify an amount."
+   			end
+   			puts @sub_budget_notation.errors.messages
+   		end
+   		flash[:alert] = alertMessage
 		end
 	end
 

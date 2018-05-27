@@ -1,7 +1,7 @@
 <h3>Search for Users</h3>
   <%= form_tag search_user_path, remote: true, method: :get do %>
         <%= text_field_tag :search_param, params[:search_param], placeholder: "Enter name or email", autofocus: true, class: "" %>
-        <%= button_tag(type: :submit, class: "") do %>
+        <%= button_tag(type: :submit, class: "btn btn-primary") do %>
           Search
         <% end %>
   <% end %>

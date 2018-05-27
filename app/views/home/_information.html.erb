@@ -9,7 +9,7 @@
 	  	<div class="people">
 	  		<div class="list-group">
 	  		<% if !@people.present?%>
-	  			<h5>There is currently not adden any <strong>People</strong> to this Budget.</h5>
+	  			<h5>There is currently not added any <strong>People</strong> to this Budget.</h5>
 	  			<p>When you have added People to the Family Budget you can link <em>outgoing Budget Notations</em> from them to <em>incomming Budget Notations</em> on a <strong>Sub Budget</strong>.</p>
 	  			<%= link_to "Add People", new_person_path, class: "btn btn-primary", method: :get %>
 				<% else %>
@@ -38,7 +38,12 @@
 		    <p class="category">Combined from all Sub Budgets</p>
 		</div>
 		<div class="content">
-		    <div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>
+		    <div id="chartPreferences" class="ct-chart ct-perfect-fourth">
+		    	<% if !current_user.owner_or_member_of_budget?.hasOutgoingNotations? %>
+						<h4>You dont have any Sub budgets.</h4>
+						<p>This will show a simple graph of your outgoing Sub Budget Notations.</p>
+		    	<% end %>
+		    </div>
 
 		    <div class="footer">
 		        <div class="legend">

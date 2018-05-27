@@ -2,8 +2,9 @@ $("#myModal").find('.modal-body').html("<%= j render 'form', person_budget_notat
 $("#myModal").modal('show');
 
 var flash = createFlashMessage('<%= j flash[:notice] %>', '<%= j flash[:alert] %>');
+
 $.notify({
-    icon: 'pe-7s-trash',
+    icon: 'pe-7s-flag',
     message: flash.message
 
   },{

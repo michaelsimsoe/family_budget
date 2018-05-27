@@ -49,7 +49,7 @@ class PersonBudgetNotationsController < ApplicationController
 								
 			SubBudgetNotation.create(sub_budget_id:this_sub_budget_id, 
 				title:"From #{@person_budget_notation.person.name}", 
-				description: person_budget_notation_params["description"], 
+				description: person_budget_notation_params["title"], 
 				amount:person_budget_notation_params["amount"], 
 				notation_type:"deposit",
 				person_budget_notation_id: @person_budget_notation.id)
@@ -68,8 +68,19 @@ class PersonBudgetNotationsController < ApplicationController
       	format.json { render :json => @person_budget_notation }
       	format.js
    		end
+   		flash[:notice] = "Notation has been edited!"
 		else
-
+			alertMessage = "Notation was not created! "
+   		if @sub_budget_notation.errors.messages
+   			if @sub_budget_notation.errors.messages[:notation_type].present?
+   				alertMessage += "You need to specify if it is inn or out. "
+   			end
+   			if @sub_budget_notation.errors.messages[:amount].present?
+   				alertMessage += "You need to specify an amount."
+   			end
+   			puts @sub_budget_notation.errors.messages
+   		end
+   		flash[:alert] = alertMessage
 		end
 	end
 

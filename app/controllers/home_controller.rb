@@ -18,6 +18,13 @@ class HomeController < ApplicationController
 		@family_budgets = FamilyBudget.all
 		if @family_budget == nil
 			puts "\nNo Budget\n\n"
+			query_params = request.query_parameters
+			if query_params[:finished]
+				user = User.find(current_user.id)
+				user.first_time = false
+				user.save
+				return redirect_to root_path
+			end
 			render "nobudget"
 		else
 			redirect_to root_path

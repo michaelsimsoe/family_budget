@@ -22,12 +22,21 @@
 //= require animate.min
 //= require light-bootstrap-dashboard
 //= require demo
+//= require driver
 //= require pe-icon-7-stroke
 //= require family_budgets
 //= require home
 //= require person_budget_notations
 //= require sub_budget_notations
+//= require people
 
+.card {
+	margin-top: 5px;
+}
+
+.list-group {
+	margin-top: 5px;
+}
 
 @media (min-width: 768px) {
 	.modal-dialog {
