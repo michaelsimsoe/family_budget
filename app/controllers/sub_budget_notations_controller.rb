@@ -41,6 +41,11 @@ class SubBudgetNotationsController < ApplicationController
 
 	def update
 		@sub_budget_notation = SubBudgetNotation.find(params[:id])
+      
+      if @sub_budget_notation.person_budget_notation_id != nil
+         @person_budget_notation = PersonBudgetNotation.find(@sub_budget_notation.person_budget_notation_id)
+      end
+
 		if @sub_budget_notation.update(sub_budget_notation_params)
 			respond_to do |format|
       	format.json { render :json => @sub_budget_notation }
@@ -60,6 +65,8 @@ class SubBudgetNotationsController < ApplicationController
    		end
    		flash[:alert] = alertMessage
 		end
+
+      @person_budget_notation.update(amount: sub_budget_notation_params["amount"])
 	end
 
 	def destroy

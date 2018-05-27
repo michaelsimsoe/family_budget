@@ -63,6 +63,11 @@ class PersonBudgetNotationsController < ApplicationController
 
 	def update
 		@person_budget_notation = PersonBudgetNotation.find(params[:id])
+
+		if @person_budget_notation.sub_budget_id != nil
+      @sub_budget_notation = SubBudgetNotation.where("person_budget_notation_id like ?", @person_budget_notation.id)
+    end
+
 		if @person_budget_notation.update(person_budget_notation_params)
 			respond_to do |format|
       	format.json { render :json => @person_budget_notation }
@@ -71,16 +76,21 @@ class PersonBudgetNotationsController < ApplicationController
    		flash[:notice] = "Notation has been edited!"
 		else
 			alertMessage = "Notation was not created! "
-   		if @sub_budget_notation.errors.messages
-   			if @sub_budget_notation.errors.messages[:notation_type].present?
+   		if @person_budget_notation.errors.messages
+   			if @person_budget_notation.errors.messages[:notation_type].present?
    				alertMessage += "You need to specify if it is inn or out. "
    			end
-   			if @sub_budget_notation.errors.messages[:amount].present?
+   			if @person_budget_notation.errors.messages[:amount].present?
    				alertMessage += "You need to specify an amount."
    			end
-   			puts @sub_budget_notation.errors.messages
+   			puts @person_budget_notation.errors.messages
    		end
    		flash[:alert] = alertMessage
+		end
+
+		if @sub_budget_notation != nil
+			@sub_budget_notation.update(amount: person_budget_notation_params["amount"])
+			puts "Sub Budget Notation also updated"
 		end
 	end
 
