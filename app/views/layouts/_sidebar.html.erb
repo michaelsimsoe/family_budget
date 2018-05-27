@@ -2,9 +2,9 @@
 
   <div class="sidebar-wrapper">
         <div class="logo">
-            <a href="#" class="simple-text">
+            <%= link_to root_path, class: "simple-text", method: :get do %>
                 Family Budget
-            </a>
+            <% end %>
         </div>
 
         <ul class="nav">
@@ -29,7 +29,7 @@
             <li class="<%= current_class?(edit_user_registration_path) %>">
                 <%= link_to edit_user_registration_path, method: :get do %>
                     <i class="pe-7s-config"></i>
-                    <p>SETTINGS</p>
+                    <p>ACCOUNT</p>
                 <% end %>
             </li>
         </ul>
