@@ -4,7 +4,7 @@
 
 We've got an excel sheet with our current family budget monthly expenses. I've always wanted something more than that. Something dynamic, more .. app.. like. I'm sure there is. 100% positively sure. But I haven't looked. Because you know.. I wanted to make one my self. :bowtie: This is a really basic budget application. I mainly built it to test out Ruby on Rails, without following a tutorial.
 
-![skjermbilde 2018-05-28 11 43 10 2](https://user-images.githubusercontent.com/16366210/40615535-76d517dc-6287-11e8-9fa9-9686b2f162c0.png)
+![skjermbilde 2018-05-28 10 24 40 2](https://user-images.githubusercontent.com/16366210/40625764-a13c8474-62b4-11e8-85e5-a32d82ecfb15.png)
 
 ## Table of content
 - [Motivation](#motivation)
@@ -33,12 +33,47 @@ I want to be proficient enough in Ruby and RoR to easily and quickly make an api
 - There is no testing. What. So. Ever.
 - There are bugs. They will not be fixed.
 - I made this fancy README, just because..
+- UX has been neglected, **badly**.
 
 ## What I've built
+It's an application to display monthly income and expenses in a family. Basically, you can make a budget and then add the people in this familiy as well as "sub" budgets like groceries, car, utillities and so on.
+The initial image shows the welcome screen, after the *first-time* tour:
+
+![skjermbilde 2018-05-28 10 24 02](https://user-images.githubusercontent.com/16366210/40625673-2ff97c90-62b4-11e8-9b8c-d9db089c7bfa.png)
+
+![skjermbilde 2018-05-28 10 24 12](https://user-images.githubusercontent.com/16366210/40625686-4668e0b0-62b4-11e8-88ef-e42fdec10cc2.png)
+
+There is sort of a *friendship* relation between users and Family Budgets. I based it on [this article](https://dankim.io/mutual-friendship-rails/). You can request the be a member of a budget, and as a budget owner you can invite other users.
+![skjermbilde 2018-05-28 10 24 19](https://user-images.githubusercontent.com/16366210/40625730-82628ecc-62b4-11e8-9cca-4aecceb32401.png)
+
+![skjermbilde 2018-05-28 10 24 26](https://user-images.githubusercontent.com/16366210/40625739-8bf8fcb4-62b4-11e8-8fff-385bfa575e65.png)
+
+The empty budget welcome screen:
+![skjermbilde 2018-05-28 11 44 17](https://user-images.githubusercontent.com/16366210/40625779-b39dcaba-62b4-11e8-9965-edfc60b2bc6c.png)
+
+Creating people to populate the Family Budget. Not to be confused with other users:
+![skjermbilde 2018-05-28 11 47 24](https://user-images.githubusercontent.com/16366210/40625798-c9c8f5c6-62b4-11e8-9f1f-85d9423c8ee1.png)
+
+Sub Budgets. Where the purpose really lays..
+![skjermbilde 2018-05-28 11 54 17](https://user-images.githubusercontent.com/16366210/40625806-d655bd60-62b4-11e8-8d2c-ee0536226c15.png)
+
+The main page when the budget is up and rocking (that sounds so much better in norwegian):
+![skjermbilde 2018-05-28 11 54 10](https://user-images.githubusercontent.com/16366210/40625821-e8c1c2aa-62b4-11e8-8f08-e6db06509ef4.png)
+
+There is an optional association between *Person* budget notations and *Sub* budget notations. If it exists, editing one will edit the associated notation as well.
+![skjermbilde 2018-05-28 11 54 28](https://user-images.githubusercontent.com/16366210/40625832-fb5efcca-62b4-11e8-8ddc-a9ae3f49278d.png)
+
+If you want to do a quick test of the app, you can make a user a knock your self out, or test the premade demo-user:
+
+| email | password |
+| ------------- | ------------- |
+| demo@demo.com  | demo2018  |
+
 
 ## Resources
-- [Light Bootstrap Dashboard](https://www.creative-tim.com/product/light-bootstrap-dashboard) from Creative Tim
-- Device gem, for users. It's awesome
+- [Light Bootstrap Dashboard](https://www.creative-tim.com/product/light-bootstrap-dashboard) from Creative Tim, with all its resources.
+- [Device gem](https://github.com/plataformatec/devise), for authentication. It's awesome!
+- [Driver.js](https://github.com/kamranahmedse/driver.js?files=1), for the initial first-log-on-tour.
 
 ## Lessons learned
 I've learned a lot. I wish somebody would've told how much more you could learn if you do stuff on your own, and don't always follow some course or tutorial (oh wait - everyone said so).
@@ -49,6 +84,10 @@ But:
 heroku run rails db:schema:load
 ```
 fixed it.
+
+I feel I've made a lot of reduntant code and I might have put logic in the wrong places. But it works for now. I can't aim for perfect on these for-fun test-projects.
+
+Should have added tests though. Seems like a good habit.
 
 I've used git more than erlier. Trying to start branches for new functionality. I still suck at commiting though. 
 
