@@ -19,6 +19,7 @@ class HomeController < ApplicationController
 		if @family_budget == nil
 			puts "\nNo Budget\n\n"
 			query_params = request.query_parameters
+			puts query_params[:finished]
 			if query_params[:finished]
 				user = User.find(current_user.id)
 				user.first_time = false
