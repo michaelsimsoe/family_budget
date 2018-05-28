@@ -16,6 +16,16 @@ class SubBudgetsController < ApplicationController
 			puts "success"
 			# redirect_to family_budget_path(@budget)
 			redirect_to root_path
+		else
+			redirect_to new_sub_budget_path
+			alertMessage = "Budget was not created! "
+   		if @sub_budget.errors.messages
+   			if @sub_budget.errors.messages[:title].present?
+   				alertMessage += "You need to specify a title for this sub budget. "
+   			end
+   			puts @sub_budget.errors.messages
+   		end
+   		flash[:alert] = alertMessage
 		end
 	end
 

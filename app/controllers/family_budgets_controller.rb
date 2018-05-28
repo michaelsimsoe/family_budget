@@ -15,6 +15,16 @@ class FamilyBudgetsController < ApplicationController
 		if @family_budget.save
 			puts "success"
 			redirect_to root_path
+		else
+			redirect_to new_family_budget_path
+			alertMessage = "Budget was not created! "
+   		if @family_budget.errors.messages
+   			if @family_budget.errors.messages[:name].present?
+   				alertMessage += "You need to specify a name for this budget. "
+   			end
+   			puts @family_budget.errors.messages
+   		end
+   		flash[:alert] = alertMessage
 		end
 	end
 

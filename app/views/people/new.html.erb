@@ -5,3 +5,15 @@
 		<%= render 'form' %>
 	</div>
 </div>
+<script>
+	var flash = createFlashMessage('<%= j flash[:notice] %>', '<%= j flash[:alert] %>');
+
+	$.notify({
+	    icon: 'pe-7s-flag',
+	    message: flash.message
+
+	  },{
+	      type: flash.messageType,
+	      timer: 500
+	});
+</script>

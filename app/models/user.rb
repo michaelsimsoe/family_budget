@@ -10,6 +10,7 @@ class User < ApplicationRecord
   # has_many :invitations, dependent: :destroy
   has_many :pending_invitations, through: :invitations, source: :family_budget
 
+
   def full_name
     return "#{first_name} #{last_name}".strip if (first_name || last_name)
     "Anonymous"

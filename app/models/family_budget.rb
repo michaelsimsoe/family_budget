@@ -7,6 +7,7 @@ class FamilyBudget < ApplicationRecord
   has_many :sub_budgets, dependent: :destroy
   has_many :pending_members, through: :member_requests, source: :user
   has_many :invitations, dependent: :destroy
+  validates :name, presence: true
   # has_many :memberships, dependent: :destroy
   # has_many :members, through: :memberships
   

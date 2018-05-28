@@ -15,6 +15,16 @@ class PeopleController < ApplicationController
 		if @person.save
 			puts "success"
 			redirect_to people_path
+		else
+		redirect_to new_person_path
+		alertMessage = "Person was not created! "
+ 		if @person.errors.messages
+ 			if @person.errors.messages[:name].present?
+ 				alertMessage += "You need to specify a name for person. "
+ 			end
+ 			puts @person.errors.messages
+ 		end
+ 		flash[:alert] = alertMessage
 		end
 	end
 
