@@ -27,7 +27,28 @@
 			<p>So now you need a budget. Either create one, send a member request to join one, or wait for an invitation.</p>
 			<%= link_to "Create Budget", new_family_budget_path, class: "btn btn-primary btn-lg center-block", id: "create-budget", method: :get %>
 			<% if !current_user.member_requests.present? %>
-				<% if FamilyBudget.first.present? %>
+				<% if current_user.first_time %>
+					<div class="card" id="dummy-request">
+				    <div class="header">
+				      <h4 class="title">Request to join a friends budget</h4>
+				    </div>
+				    <div class="content">
+							<ul class="list-group">
+									<li class="list-group-item">
+										<h4 class="list-group-item-heading">BUDGET NAME</h4>
+										<p class="list-group-item-text">
+											<strong>Owned by: </strong> OWNER NAME
+										</p>
+										<span>
+											<%= link_to "Request membership", no_budget_path(:finished => 'true'), class: "btn btn-primary btn-xs", method: :get %>
+										</span>
+									</li>
+								</ul>
+						</div>
+					</div>
+
+				<% elsif FamilyBudget.first.present? %>
+					
 					<div class="card">
 				    <div class="header">
 				      <h4 class="title">Request to join a friends budget</h4>
@@ -45,25 +66,6 @@
 										</span>
 									</li>
 								<% end %>
-								</ul>
-						</div>
-					</div>
-				<% elsif current_user.first_time %>
-					<div class="card" id="dummy-request">
-				    <div class="header">
-				      <h4 class="title">Request to join a friends budget</h4>
-				    </div>
-				    <div class="content">
-							<ul class="list-group">
-									<li class="list-group-item">
-										<h4 class="list-group-item-heading">BUDGET NAME</h4>
-										<p class="list-group-item-text">
-											<strong>Owned by: </strong> OWNER NAME
-										</p>
-										<span>
-											<%= link_to "Request membership","#", class: "btn btn-primary btn-xs", method: :post %>
-										</span>
-									</li>
 								</ul>
 						</div>
 					</div>

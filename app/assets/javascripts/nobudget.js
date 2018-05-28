@@ -17,24 +17,24 @@ $(document).ready(function() {
 		  {
 		    element: '#start-info',
 		    popover: {
-		      title: 'Title on Popover',
-		      description: 'Body of the popover',
-		      position: 'left'
+		      title: 'Lets go through the Basics',
+		      description: 'The Family Budget has these three components.',
+		      position: 'top'
 		    }
 		  },
 		  {
 		    element: '#create-budget',
 		    popover: {
-		      title: 'Title on Popover',
-		      description: 'Body of the popover',
+		      title: 'Create your own Budget',
+		      description: 'Or request membership to an allready excisting one.',
 		      position: 'top'
 		    }
 		  },
 		  {
 		    element: '#dummy-request',
 		    popover: {
-		      title: 'Title on Popover',
-		      description: 'Body of the popover',
+		      title: 'If you know about a Budget',
+		      description: 'You can request to join it here.',
 		      position: 'bottom'
 		    }
 		  },
@@ -45,9 +45,8 @@ $(document).ready(function() {
 		      title: 'Title on Popover',
 		      showButtons: false,
 		      allowClose: false,
-		      description: `
-						<button class="btn btn-primary btn-lg finished-tour">Get Started</button>
-		      `,
+		      title: "Continue",
+		      description: 'Click on any button or create a budget to end this tutorial.' ,
 		    }
 		  },
 		]);
