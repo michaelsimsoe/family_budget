@@ -34,7 +34,7 @@ I want to be proficient enough in Ruby and RoR to easily and quickly make an api
 - There are bugs. They will not be fixed.
 - I made this fancy README, just because..
 - UX has been neglected, **badly**.
-- Yes, yes i know I should'nt [user pie charts](https://www.perceptualedge.com/articles/visual_business_intelligence/save_the_pies_for_dessert.pdf)
+- Yes, yes i know I should'nt [use pie charts](https://www.perceptualedge.com/articles/visual_business_intelligence/save_the_pies_for_dessert.pdf)
 
 ## What I've built
 It's an application to display monthly income and expenses in a family. Basically, you can make a budget and then add the people in this familiy as well as "sub" budgets like groceries, car, utillities and so on.
